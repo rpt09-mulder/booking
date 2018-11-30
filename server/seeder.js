@@ -29,14 +29,13 @@ const seeder = () => {
       bookedDates: bookedDays,
     });
     
-    newReservedDates.save().then((res) => {
-  
-      console.log('Sample data has been saved to DB')
-    });
+    newReservedDates.save()
   };
+  console.log('Sample data has been saved to DB')
 };
 
-module.exports = seeder;
+// Call Seeder func
+seeder();
 
 
 
