@@ -8,8 +8,16 @@
     "node": ">=10.13.0"
   },
   "scripts": {
+    "start": "nodemon server/server.js",
+    "seeder": "node server/seeder.js"
   },
   "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "moment": "^2.22.2",
+    "mongodb": "^3.1.10",
+    "mongoose": "^5.3.12"
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"

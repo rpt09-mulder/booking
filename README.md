@@ -1,13 +1,15 @@
 # Project Name
+Booking Component for the FireBnb Web Application
 
 > Project description
+this component will allow the user to see available dates for a listing and make a booking request. 
 
 ## Related Projects
 
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
-  - https://github.com/teamName/repo
+  - https://github.com/rpt09-mulder/rooms
+  - https://github.com/rpt09-mulder/gallery
+  - https://github.com/rpt09-mulder/reviews
+
 
 ## Table of Contents
 
@@ -17,7 +19,7 @@
 
 ## Usage
 
-> Some usage instructions
+> Simply fire up the start script and connect to a db.
 
 ## Requirements
 
@@ -36,4 +38,6 @@ From within the root directory:
 npm install -g webpack
 npm install
 ```
+
+##Seed Script 
 
