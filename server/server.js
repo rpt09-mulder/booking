@@ -25,17 +25,18 @@ const BookedDates = require('./models/BookedDates');
 // @route     GET api/posts/dates
 // @desc      Gets all booked dates for a listing
 // @access    Public
-app.get('/api/dates', (req, res) => {
+app.get('/api/dates/:id', (req, res) => {
   console.log('receiving request')
-  BookedDates.findOne({'listing_id': 1})
+  BookedDates.findOne({listing_id: req.params.id})
     .then(listing => {
-      
-      console.log('Listing', listing)
+
+      if(listing === null){
+        res.status(404).json({listingnotfound: 'No listing found'})
+       
+      }
       res.json(listing)
+
     })
-    .catch(err => {
-      console.log(err)
-     })
  })
 
 
