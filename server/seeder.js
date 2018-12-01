@@ -4,12 +4,12 @@ const mongoose = require('mongoose');
 const db = require('./database/db');
 
 // Load Profile Model
-const ReservedDates = require('./models/ReserveDates');
+const BookedDates = require('./models/BookedDates');
 
 const seeder = () => {
 
   // Droping existing sample data
-  ReservedDates.remove({}, ()=>{
+  BookedDates.remove({}, ()=>{
     console.log('Removed Sample Data')
   })
 // Loop for each listing
@@ -24,18 +24,24 @@ const seeder = () => {
       bookedDays.push(cleanDate)
     };
     
-    const newReservedDates = new ReservedDates({
+    const newBookedDates = new BookedDates({
       listing_id: j,
       bookedDates: bookedDays,
     });
     
-    newReservedDates.save()
+    newBookedDates.save()
   };
   console.log('Sample data has been saved to DB')
 };
 
 // Call Seeder func
 seeder();
+
+
+
+
+
+
 
 
 
