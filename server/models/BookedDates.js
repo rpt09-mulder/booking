@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-const ReservedDatesSchema = new Schema({
+const BookedDatesSchema = new Schema({
 
     listing_id: {
       type: Number,
@@ -15,4 +15,4 @@ const ReservedDatesSchema = new Schema({
 
 });
 
-module.exports = ReservedDates = mongoose.model('reservedDates', ReservedDatesSchema);
+module.exports = BookedDates = mongoose.model('bookedDates', BookedDatesSchema);

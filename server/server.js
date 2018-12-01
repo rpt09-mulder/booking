@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const path = require('path')
 const app = express();
 
+// Handling errors to be communicated to client
+const errors = {}
+
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
@@ -12,15 +15,20 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 
-// Load the ReserveDates Model
-const ReserveDates = require('./models/ReserveDates');
+// Load the BookedDates Model
+const BookedDates = require('./models/BookedDates');
 
 
 // @route     GET api/posts/dates
 // @desc      Gets all booked dates for a listing
 // @access    Public
 app.get('/api/dates', (req, res) => {
-    console.log('getting dates')
+  console.log(req.params.id)
+  BookedDates.findOne({listing_id: 1})
+    .then(dates => {
+      console.log(dates)
+    })
+    .catch(err => res.status(404).json({listingnotfound: 'No listing found' }))
 })
 
 
