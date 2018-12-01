@@ -12,6 +12,18 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, '../client/public')));
 
 
+// Load the ReserveDates Model
+const ReserveDates = require('./models/ReserveDates');
+
+
+// @route     GET api/posts/dates
+// @desc      Gets all booked dates for a listing
+// @access    Public
+app.get('/api/dates', (req, res) => {
+    console.log('getting dates')
+})
+
+
 // Declaring Server Port
 const port = 5555;
 
