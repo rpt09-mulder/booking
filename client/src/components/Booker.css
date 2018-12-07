@@ -1,0 +1,33 @@
+
+.BookerWrapper{
+  height: 400px;
+  width: 400px;
+  position: fixed;
+  right: 200px;
+  bottom: 100px;
+  background: red;
+  border: 1px solid grey;
+  
+}
+
+.priceAndReviews{
+  background: white;
+}
+
+.price{
+  display: inline-block;
+  margin: 20px 0 20px 20px;
+  font-size: 30px;
+  color: rgb(49, 49, 49);
+}
+.per-night{
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 12px;
+  color: rgb(49, 49, 49);
+}
+
+.reviews{
+  margin: 0px 0px 0px 20px;
+  padding-bottom: 5px;
+}
