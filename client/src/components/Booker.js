@@ -1,46 +1,61 @@
 import React from 'react';
-import { Calendar } from 'react-date-range';
 const moment = require('moment');
+import axios from 'axios';
+import './Booker.css';
+
+import 'react-dates/initialize';
+import 'react-dates/lib/css/_datepicker.css';
+
+import { DateRangePicker } from 'react-dates';
 
 class Booker extends React.Component {
    state={
-
-      startDate: new Date(),
-      endDate: '',
+    startDate: null,
+    endDate: null,
+    focusedInput: null,
    }
 
+  handleSelect = () => {
+    
+    axios.post(`http://localhost:5555/booking/dates${window.location.pathname}`, {
+      startDate: this.state.startDate,
+      endDate: this.state.endDate
+    }) 
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
-
-  handleSelect = (range) => {
-    console.log(range); // Momentjs object
+    console.log(window.location.pathname)
   }
 
   render(){
     return(
-      <div>
-        
-        <div>
-          <input
-          type="text"
-          readOnly
-          value={moment(this.state.startDate).format("MMM Do YY")}
-          />
-          <input
-          type="text"
-          readOnly
-          value={this.state.endDate}
+      <div className="BookerWrapper">
+
+        <div className="priceAndReviews">
+          <h3 className="price">$57</h3><p className="per-night">per night</p>
+          <div className="reviews">
+            reviews
+          </div>
+        </div>
+        <div className="Booker">
+          <DateRangePicker
+            startDateId="startDate"
+            endDateId="endDate"
+            startDate={this.state.startDate}
+            endDate={this.state.endDate}
+            onDatesChange={({ startDate, endDate }) => { this.setState({ startDate, endDate })}}
+            focusedInput={this.state.focusedInput}
+            onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
           />
         </div>
-
-
-        <Calendar 
-         onInit={this.handleSelect}
-         onChange={this.handleSelect}
-         showSelectionPreview={true}
-         moveRangeOnFirstSelection={false}
-         direction="horizontal"
-        />
-      </div>
+        <div>
+          <input type="submit" onClick={() => this.handleSelect()}/>
+        </div>
+    </div>
     )
   }
 
