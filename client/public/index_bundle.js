@@ -86,6 +86,7 @@
 /************************************************************************/
 /******/ ({
 
+<<<<<<< HEAD
 /***/ "./node_modules/airbnb-prop-types/build/and.js":
 /*!*****************************************************!*\
   !*** ./node_modules/airbnb-prop-types/build/and.js ***!
@@ -4536,10 +4537,13 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 
 /***/ }),
 
+=======
+>>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
 /***/ "./src/index.js":
 /*!**********************!*\
   !*** ./src/index.js ***!
   \**********************/
+<<<<<<< HEAD
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4556,6 +4560,12 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var reac
 /***/ (function(module, exports, __webpack_require__) {
 
 eval("\nvar content = __webpack_require__(/*! !../node_modules/css-loader!./styles.css */ \"./node_modules/css-loader/index.js!./src/styles.css\");\n\nif(typeof content === 'string') content = [[module.i, content, '']];\n\nvar transform;\nvar insertInto;\n\n\n\nvar options = {\"hmr\":true}\n\noptions.transform = transform\noptions.insertInto = undefined;\n\nvar update = __webpack_require__(/*! ../node_modules/style-loader/lib/addStyles.js */ \"./node_modules/style-loader/lib/addStyles.js\")(content, options);\n\nif(content.locals) module.exports = content.locals;\n\nif(false) {}\n\n//# sourceURL=webpack:///./src/styles.css?");
+=======
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+eval("throw new Error(\"Module build failed (from ./node_modules/babel-loader/lib/index.js):\\nSyntaxError: /Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/src/index.js: Unexpected token (7:2)\\n\\n\\u001b[0m \\u001b[90m  5 | \\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m  6 | \\u001b[39m\\u001b[33mReactDOM\\u001b[39m\\u001b[33m.\\u001b[39mrender(\\u001b[0m\\n\\u001b[0m\\u001b[31m\\u001b[1m>\\u001b[22m\\u001b[39m\\u001b[90m  7 | \\u001b[39m  \\u001b[33m<\\u001b[39m\\u001b[33mApp\\u001b[39m \\u001b[33m/\\u001b[39m\\u001b[33m>\\u001b[39m\\u001b[33m,\\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m    | \\u001b[39m  \\u001b[31m\\u001b[1m^\\u001b[22m\\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m  8 | \\u001b[39m  document\\u001b[33m.\\u001b[39mgetElementById(\\u001b[32m'app'\\u001b[39m)\\u001b[0m\\n\\u001b[0m \\u001b[90m  9 | \\u001b[39m)\\u001b[33m;\\u001b[39m\\u001b[0m\\n\\u001b[0m \\u001b[90m 10 | \\u001b[39m\\u001b[0m\\n    at Parser.raise (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:4028:15)\\n    at Parser.unexpected (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5343:16)\\n    at Parser.parseExprAtom (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:6432:20)\\n    at Parser.parseExprSubscripts (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:6019:21)\\n    at Parser.parseMaybeUnary (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5998:21)\\n    at Parser.parseExprOps (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5907:21)\\n    at Parser.parseMaybeConditional (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5879:21)\\n    at Parser.parseMaybeAssign (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5826:21)\\n    at Parser.parseExprListItem (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:7111:18)\\n    at Parser.parseCallExpressionArguments (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:6227:22)\\n    at Parser.parseSubscript (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:6129:32)\\n    at Parser.parseSubscripts (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:6039:19)\\n    at Parser.parseExprSubscripts (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:6029:17)\\n    at Parser.parseMaybeUnary (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5998:21)\\n    at Parser.parseExprOps (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5907:21)\\n    at Parser.parseMaybeConditional (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5879:21)\\n    at Parser.parseMaybeAssign (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5826:21)\\n    at Parser.parseExpression (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:5779:21)\\n    at Parser.parseStatementContent (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:7391:21)\\n    at Parser.parseStatement (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:7277:17)\\n    at Parser.parseBlockOrModuleBlockBody (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:7829:23)\\n    at Parser.parseBlockBody (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:7816:10)\\n    at Parser.parseTopLevel (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:7242:10)\\n    at Parser.parse (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:8642:17)\\n    at parse (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/parser/lib/index.js:10648:38)\\n    at parser (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/core/lib/transformation/normalize-file.js:170:34)\\n    at normalizeFile (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/core/lib/transformation/normalize-file.js:138:11)\\n    at runSync (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/core/lib/transformation/index.js:44:43)\\n    at runAsync (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/core/lib/transformation/index.js:35:14)\\n    at process.nextTick (/Users/bijanalbrecht/Desktop/Hack_Reactor/booking/client/node_modules/@babel/core/lib/transform.js:34:34)\");\n\n//# sourceURL=webpack:///./src/index.js?");
+>>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
 
 /***/ })
 

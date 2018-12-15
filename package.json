@@ -9,12 +9,19 @@
   },
   "scripts": {
     "start": "nodemon server/server.js",
+<<<<<<< HEAD
     "seeder": "node server/seeder.js",
     "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
+=======
+    "seeder": "node server/seeder.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3",
+>>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
     "express": "^4.16.4",
     "faker": "^4.1.0",
     "moment": "^2.22.2",
