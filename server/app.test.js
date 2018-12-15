@@ -1,14 +1,15 @@
-const request = require('supertest');
-const app = require('./app');
+const supertest = require('supertest');
+const app = require('./server');
+const request = supertest(app)
 
+
+const BookedDates = require('./models/BookedDates');
 
 jest.mock('./models/BookedDates', () => {
   return new Promise((resolve, reject) => {
     resolve()
   })
 });
-
-const BookedDates = require('./models/BookedDates');
 
 
 describe('server', () => {
@@ -20,13 +21,20 @@ describe('server', () => {
      });  
    });
 
-   test('should have an id of 1', (done) => {
-    request(app).get('/api/dates/:id').then((response) => {
-      console.log(response)
-      expect(response).toEqual()
+   test('should a listing id', (done) => {
+
+    const data = {
+      listing_id: [{listing_id: 1}]
+    }
+
+    BookedDates.findOne() = jest.fn().mockReturnValue(data);
+
+    request.get('/api/dates/1').then((res) => {
+      expect(BookedDates.findOne(data)).resolves.
+      expect(res.body).toHaveProperty('listing_id')
       done()
-    })
-  })
+    });
+  });
 });
 
     
