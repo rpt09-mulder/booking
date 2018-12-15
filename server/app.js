@@ -1,10 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 // const mongoose = require('mongoose');
-const path = require('path')
-// const db = require('./database/db');
+const path = require('path');
+const cors = require('cors');
+const db = require('./database/db');
 
 const app = express();
+app.use(cors());
 
 // Handling errors to be communicated to client
 const errors = {}
@@ -23,7 +25,8 @@ const BookedDates = require('./models/BookedDates');
 // @route     GET api/dates/:id
 // @desc      Gets all booked dates for a listing
 // @access    Public
-app.get('/api/dates/:id', (req, res) => {
+app.get('/booking/dates/:id', (req, res) => {
+  
   BookedDates.findOne({listing_id: req.params.id})
     .then(listing => {
       if(listing === null){
@@ -37,9 +40,14 @@ app.get('/api/dates/:id', (req, res) => {
 // @route     POST api/dates/:id
 // @desc      Books date(s) to the database
 // @access    Public
-app.post('/api/dates/:id', (req, res) => {
+app.post('/booking/dates/:id', (req, res) => {
+
+    console.log(req.params.id)
+
     BookedDates.findOne({listing_id: req.params.id})
       .then(listing => {  
+
+        console.log(listing)
     })
 });
 
