@@ -1,0 +1,19 @@
+@font-face{
+  font-family: "Cereal";
+  src: '../assets/AirbnbCereal-Book.ttf';
+  font-weight: normal;
+}
+
+@font-face{
+  font-family: "Cereal";
+  src: '../assets/AirbnbCereal-Light.ttf';
+  font-weight: 200;
+}
+
+html, body{
+  padding: 0;
+  margin: 0;
+  font-family: 'Cereal', sans-serif;
+  height: 2000px;
+  position: relative;
+}
