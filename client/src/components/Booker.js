@@ -1,6 +1,6 @@
 import React from 'react';
-import { Calendar } from 'react-date-range';
 const moment = require('moment');
+import axios from 'axios';
 import './Booker.css';
 
 import 'react-dates/initialize';
@@ -15,10 +15,20 @@ class Booker extends React.Component {
     focusedInput: null,
    }
 
+  handleSelect = () => {
+    
+    axios.post(`http://localhost:5555/booking/dates${window.location.pathname}`, {
+      startDate: this.state.startDate,
+      endDate: this.state.endDate
+    }) 
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
 
-
-  handleSelect = (range) => {
-    console.log(range); // Momentjs object
+    console.log(window.location.pathname)
   }
 
   render(){
@@ -26,7 +36,7 @@ class Booker extends React.Component {
       <div className="BookerWrapper">
 
         <div className="priceAndReviews">
-          <h3 className="price">$57</h3><p class="per-night">per night</p>
+          <h3 className="price">$57</h3><p className="per-night">per night</p>
           <div className="reviews">
             reviews
           </div>
@@ -41,6 +51,9 @@ class Booker extends React.Component {
             focusedInput={this.state.focusedInput}
             onFocusChange={(focusedInput) => { this.setState({ focusedInput })}}
           />
+        </div>
+        <div>
+          <input type="submit" onClick={() => this.handleSelect()}/>
         </div>
     </div>
     )
