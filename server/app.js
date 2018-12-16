@@ -44,10 +44,18 @@ app.get('/booking/dates/:id', (req, res) => {
 // @desc      Books date(s) to the database
 // @access    Public
 app.post('/booking/dates/:id', (req, res) => {
+
+    const newBookedDate = req.body.newBookedDate;
+
     BookedDates.findOne({listing_id: req.params.id})
       .then(listing => {  
 
-        console.log(listing)
+        listing.bookedDates.push(newBookedDate)
+
+        listing.save().then(() =>{
+          res.status(201).json("Your date has been booked")
+        })
+        
     })
 });
 

@@ -9,32 +9,49 @@ class Booker extends React.Component {
    state={
       startDate: new Date(),
       endDate: new Date(),
-      bookedDates: []
+      bookedDates: [],
+      message: ''
    }
 
-   componentDidMount(){
-      axios.get(`http://localhost:5555/booking/dates${window.location.pathname}`)
-        .then(result => {
-          this.setState({
-            bookedDates: result.data.bookedDates
-          })
-        })
-        .catch(err => {
-          console.log(err)
-        })
-   }
-
-   handleSubmitBooking = () =>{
-     axios.post(`http://localhost:5555/booking/dates${window.location.pathname}`, {
-       bookedDate: this.state.startDate
-     })
-     .then(result => {
-       console.log(result)
-     })
-     .catch(err => {
+   handleGetBookedDates = () => {
+    axios.get(`http://localhost:5555/booking/dates${window.location.pathname}`)
+    .then(result => {
+      this.setState({
+        bookedDates: result.data.bookedDates
+      })
+    })
+    .catch(err => {
       console.log(err)
-     })
+    })
+   }
 
+  componentDidMount(){
+   this.handleGetBookedDates()
+  }
+
+
+  handleSubmitBooking = () =>{
+     axios.post(`http://localhost:5555/booking/dates${window.location.pathname}`, {
+        newBookedDate: this.state.startDate
+      })
+      .then(result => {
+
+        this.handleGetBookedDates()
+        
+        this.setState({
+          message: result.data
+        })
+
+        setTimeout(() =>{
+          this.setState({
+            message: ''
+          })
+        }, 3000)
+
+      })
+      .catch(err => {
+        console.log(err)
+      })
    }
 
    handleChange = (date) => {
@@ -60,6 +77,8 @@ class Booker extends React.Component {
         onChange={this.handleChange}
         excludeDates={this.state.bookedDates}
       />
+
+      <p>{this.state.message}</p>
 
       <input onClick={this.handleSubmitBooking} type="submit" value="Book Now"/>
       </div>
