@@ -5,6 +5,13 @@ const app = require('./app')
 // Declaring Server Port
 const port = process.env.PORT || 5555;
 =======
+<<<<<<< HEAD
+const app = require('./app')
+
+
+// Declaring Server Port
+const port = process.env.PORT || 5555;
+=======
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -50,6 +57,7 @@ app.get('/api/dates/:id', (req, res) => {
 // Declaring Server Port
 const port = 5555;
 >>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
+>>>>>>> master
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}!`)
