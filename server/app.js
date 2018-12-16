@@ -1,15 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 // const mongoose = require('mongoose');
-const path = require('path');
-const cors = require('cors');
+const path = require('path')
 const db = require('./database/db');
+const cors = require('cors')
 
 const app = express();
 app.use(cors());
 
 // Handling errors to be communicated to client
 const errors = {}
+
+// CORS Middleware
+app.use(cors())
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({extended: false}));
@@ -26,7 +29,8 @@ const BookedDates = require('./models/BookedDates');
 // @desc      Gets all booked dates for a listing
 // @access    Public
 app.get('/booking/dates/:id', (req, res) => {
-  
+
+  console.log('Getting')
   BookedDates.findOne({listing_id: req.params.id})
     .then(listing => {
       if(listing === null){
@@ -42,12 +46,17 @@ app.get('/booking/dates/:id', (req, res) => {
 // @access    Public
 app.post('/booking/dates/:id', (req, res) => {
 
-    console.log(req.params.id)
+    const newBookedDate = req.body.newBookedDate;
 
     BookedDates.findOne({listing_id: req.params.id})
       .then(listing => {  
 
-        console.log(listing)
+        listing.bookedDates.push(newBookedDate)
+
+        listing.save().then(() =>{
+          res.status(201).json("Your date has been booked")
+        })
+        
     })
 });
 
