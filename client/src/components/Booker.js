@@ -1,45 +1,34 @@
 import React from 'react';
-import { Calendar } from 'react-date-range';
+import DatePicker from "react-datepicker";
+import axios from 'axios';
 const moment = require('moment');
+import "react-datepicker/dist/react-datepicker.css";
+
 
 class Booker extends React.Component {
    state={
-
       startDate: new Date(),
-      endDate: '',
+      endDate: new Date(),
+      bookedDates: []
    }
 
+   componentDidMount(){
+      axios.get('http://localhost:5555/api/dates/:id')
+   }
 
-
-  handleSelect = (range) => {
-    console.log(range); // Momentjs object
+   handleChange = (date) => {
+    this.setState({
+      startDate: date
+    });
   }
 
   render(){
     return(
       <div>
-        
-        <div>
-          <input
-          type="text"
-          readOnly
-          value={moment(this.state.startDate).format("MMM Do YY")}
-          />
-          <input
-          type="text"
-          readOnly
-          value={this.state.endDate}
-          />
-        </div>
-
-
-        <Calendar 
-         onInit={this.handleSelect}
-         onChange={this.handleSelect}
-         showSelectionPreview={true}
-         moveRangeOnFirstSelection={false}
-         direction="horizontal"
-        />
+      <DatePicker
+        selected={this.state.startDate}
+        onChange={this.handleChange}
+      />
       </div>
     )
   }

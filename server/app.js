@@ -23,7 +23,7 @@ const BookedDates = require('./models/BookedDates');
 // @route     GET api/dates/:id
 // @desc      Gets all booked dates for a listing
 // @access    Public
-app.get('/api/dates/:id', (req, res) => {
+app.get('/booking/dates/:id', (req, res) => {
   BookedDates.findOne({listing_id: req.params.id})
     .then(listing => {
       if(listing === null){
@@ -37,7 +37,7 @@ app.get('/api/dates/:id', (req, res) => {
 // @route     POST api/dates/:id
 // @desc      Books date(s) to the database
 // @access    Public
-app.post('/api/dates/:id', (req, res) => {
+app.post('/booking/dates/:id', (req, res) => {
     BookedDates.findOne({listing_id: req.params.id})
       .then(listing => {  
     })
