@@ -8,7 +8,6 @@ const BookedDates = require('./models/BookedDates');
 
 const seeder = () => {
 
-<<<<<<< HEAD
     // Droping existing sample data
     BookedDates.deleteMany({}, () => {
       
@@ -40,54 +39,7 @@ const seeder = () => {
     };
     console.log('Sample data has been saved to DB')
   })
-=======
-  // Droping existing sample data
-  BookedDates.remove({}, ()=>{
-    console.log('Removed Sample Data')
-  })
-// Loop for each listing
-  for(let j = 1; j <= 100; j++){
-
-    let bookedDays = []
-
-    // Loop 
-    for(let i = 0; i < 50; i++){
-      let randomDate = faker.date.between('2018-12-01', '2019-06-01');
-      let cleanDate = moment(randomDate).format('L')
-      bookedDays.push(cleanDate)
-    };
-    
-    const newBookedDates = new BookedDates({
-      listing_id: j,
-      bookedDates: bookedDays,
-    });
-    
-    newBookedDates.save()
-  };
-  console.log('Sample data has been saved to DB')
->>>>>>> master
 };
 
 // Call Seeder func
 seeder();
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-=======
->>>>>>> master
-
-
-
-
-
-
-<<<<<<< HEAD
-=======
->>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
->>>>>>> master
