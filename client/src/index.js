@@ -18,8 +18,10 @@ ReactDOM.render(
 =======
 import App from './App'
 
+window.Booking = App
+
 ReactDOM.render(
   <App />,
-  document.getElementById('app')
+  document.getElementById('booking')
 );
 >>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
