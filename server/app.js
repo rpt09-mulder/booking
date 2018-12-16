@@ -6,6 +6,7 @@ const db = require('./database/db');
 const cors = require('cors')
 
 const app = express();
+app.use(cors());
 
 // Handling errors to be communicated to client
 const errors = {}
