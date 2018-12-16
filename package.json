@@ -9,35 +9,18 @@
   },
   "scripts": {
     "start": "nodemon server/server.js",
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
     "seeder": "node server/seeder.js",
     "test": "jest"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.5",
-<<<<<<< HEAD
-=======
-=======
-    "seeder": "node server/seeder.js"
-  },
-  "dependencies": {
-    "body-parser": "^1.18.3",
->>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
->>>>>>> master
     "express": "^4.16.4",
     "faker": "^4.1.0",
     "moment": "^2.22.2",
     "mongodb": "^3.1.10",
-<<<<<<< HEAD
     "mongoose": "^5.3.12",
     "react-dates": "^18.2.2"
-=======
-    "mongoose": "^5.3.12"
->>>>>>> master
   },
   "devDependencies": {
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",

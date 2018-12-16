@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 @font-face{
   font-family: "Cereal";
   src: '../assets/AirbnbCereal-Book.ttf';
@@ -18,7 +18,7 @@ html, body{
   height: 2000px;
   position: relative;
 }
-=======
+
 html {
   height: 100%;
 }
@@ -27,4 +27,3 @@ body {
   margin: 0;
   padding: 0;
 }
->>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
