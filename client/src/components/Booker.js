@@ -13,7 +13,28 @@ class Booker extends React.Component {
    }
 
    componentDidMount(){
-      axios.get('http://localhost:5555/api/dates/:id')
+      axios.get(`http://localhost:5555/booking/dates${window.location.pathname}`)
+        .then(result => {
+          this.setState({
+            bookedDates: result.data.bookedDates
+          })
+        })
+        .catch(err => {
+          console.log(err)
+        })
+   }
+
+   handleSubmitBooking = () =>{
+     axios.post(`http://localhost:5555/booking/dates${window.location.pathname}`, {
+       bookedDate: this.state.startDate
+     })
+     .then(result => {
+       console.log(result)
+     })
+     .catch(err => {
+      console.log(err)
+     })
+
    }
 
    handleChange = (date) => {
@@ -22,14 +43,28 @@ class Booker extends React.Component {
     });
   }
 
+  addMonths = (today, monthsToAdd) => {
+
+      const maxDate = moment(today)
+
+      return maxDate.add(monthsToAdd, 'months')._d
+  }
+
   render(){
     return(
       <div>
       <DatePicker
         selected={this.state.startDate}
+        minDate={new Date()}
+        maxDate={this.addMonths(new Date(), 5)}
         onChange={this.handleChange}
+        excludeDates={this.state.bookedDates}
       />
+
+      <input onClick={this.handleSubmitBooking} type="submit" value="Book Now"/>
       </div>
+
+
     )
   }
 

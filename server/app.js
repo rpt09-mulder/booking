@@ -2,12 +2,16 @@ const express = require('express');
 const bodyParser = require('body-parser');
 // const mongoose = require('mongoose');
 const path = require('path')
-// const db = require('./database/db');
+const db = require('./database/db');
+const cors = require('cors')
 
 const app = express();
 
 // Handling errors to be communicated to client
 const errors = {}
+
+// CORS Middleware
+app.use(cors())
 
 // Body Parser Middleware
 app.use(bodyParser.urlencoded({extended: false}));
@@ -24,6 +28,8 @@ const BookedDates = require('./models/BookedDates');
 // @desc      Gets all booked dates for a listing
 // @access    Public
 app.get('/booking/dates/:id', (req, res) => {
+
+  console.log('Getting')
   BookedDates.findOne({listing_id: req.params.id})
     .then(listing => {
       if(listing === null){
@@ -40,6 +46,8 @@ app.get('/booking/dates/:id', (req, res) => {
 app.post('/booking/dates/:id', (req, res) => {
     BookedDates.findOne({listing_id: req.params.id})
       .then(listing => {  
+
+        console.log(listing)
     })
 });
 
