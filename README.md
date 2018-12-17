@@ -40,17 +40,8 @@ npm install
 ```
 
 ##Seed Script 
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
->>>>>>> master
 The seeding script will populate the database with 100 records of mockdata which includes 1. 50 random dates between 12/01/2018 and 06/01/2019 (as an array with each string record formated as month/day/year) 2. a listing ID 3. an automatically document id. This should hopfully create enough dates that when to provide the user with a realistic user experience. The script is run from the root level via 'nmp run seeder'. 
 
 ##Get dates route
 This route will fetch and return booked dates based on a listing id query. It will also return an informative error message to the client if no records have been found.
-<<<<<<< HEAD
-=======
-=======
 
->>>>>>> b49d326a004eda1fcf4178c2b7e952bc5663f027
->>>>>>> master
