@@ -14,7 +14,7 @@ class Booker extends React.Component {
    }
 
    handleGetBookedDates = () => {
-    axios.get(`http://localhost:5555/booking/dates${window.location.pathname}`)
+    axios.get(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${window.location.pathname}`)
     .then(result => {
       this.setState({
         bookedDates: result.data.bookedDates
@@ -31,7 +31,7 @@ class Booker extends React.Component {
 
 
   handleSubmitBooking = () =>{
-     axios.post(`http://localhost:5555/booking/dates${window.location.pathname}`, {
+     axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${window.location.pathname}`, {
         newBookedDate: this.state.startDate
       })
       .then(result => {
