@@ -1,8 +1,11 @@
 const mongoose = require('mongoose')
 
 // Loading DB
+//'mongodb://localhost/fireBnb-booking'
 
-mongoose.connect('mongodb://localhost/fireBnb-booking', { useNewUrlParser: true });
+const mongodbUri = 'mongodb://insivika:insivika123@ds139675.mlab.com:39675/firebnb-booking'
+
+mongoose.connect(mongodbUri, { useNewUrlParser: true });
 
 
 
