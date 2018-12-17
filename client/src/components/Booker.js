@@ -14,8 +14,13 @@ class Booker extends React.Component {
    }
 
    handleGetBookedDates = () => {
-    console.log('window', window.location.pathname)
-    axios.get(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${window.location.pathname}`)
+
+    let id = '/1';
+    if (window.location.pathname !== '/') {
+      id = window.location.pathname;
+    }
+
+    axios.get(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`)
     .then(result => {
       this.setState({
         bookedDates: result.data.bookedDates

@@ -18,8 +18,12 @@ app.use(cors())
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+
+
 // Serving Static Files
 app.use(express.static(path.join(__dirname, '../client/public')));
+
+app.use('/:id', express.static(path.join(__dirname, 'public')));
 
 // Load the BookedDates Model
 const BookedDates = require('./models/BookedDates');
