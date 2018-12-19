@@ -39,7 +39,8 @@ class Booker extends React.Component {
 
   handleSubmitBooking = () =>{
      axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${window.location.pathname}`, {
-        newBookedDate: this.state.startDate
+        startDate: this.state.startDate,
+        endDate: this.state.endDate
       })
       .then(result => {
 
@@ -135,6 +136,10 @@ class Booker extends React.Component {
           endDate={this.state.endDate}
           onChange={this.handleChangeEnd}
       />
+
+      <div>
+        <button onClick={this.handleSubmitBooking}>Book Dates</button>
+      </div>
 
       </div>
     )
