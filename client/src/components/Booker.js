@@ -1,17 +1,18 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
-import isAfter from 'date-fns';
+import { isAfter } from 'date-fns';
 import axios from 'axios';
-const moment = require('moment');
+import Moment from 'react-moment';
+
+const moment = require('moment')
+
 import "react-datepicker/dist/react-datepicker.css";
 
-
-const tomorrow = moment(new Date).add(1, 'day')
 
 class Booker extends React.Component {
    state={
       startDate: new Date(),
-      endDate: tomorrow._d,
+      endDate: new Date('12/19/2018'),
       bookedDates: [],
       message: ''
    }
@@ -34,10 +35,6 @@ class Booker extends React.Component {
     })
    }
 
-  componentDidMount(){
-   this.handleGetBookedDates()
-
-  }
 
 
   handleSubmitBooking = () =>{
@@ -64,42 +61,53 @@ class Booker extends React.Component {
       })
    }
 
-  //  handleChange = (date) => {
-  //   this.setState({
-  //     startDate: date
-  //   });
-  // }
 
+   addMonths = (today, monthsToAdd) => {
 
-  handleChangeStart = ({startDate, endDate}) =>{
-      
-    startDate = startDate || this.state.startDate;
-    endDate = endDate || this.state.endDate;
+    const maxDate = moment(today)
 
-
-    // if user selects a date before start date (today) then the end date is today
-    if(isAfter(startDate, endDate)){
-        endDate = startDate
+    return maxDate.add(monthsToAdd, 'months')._d
     }
-
-    this.setState({startDate, endDate})
-
-  }
 
 
   // Triggerts handleChange for start date
-  handleChangeStart = startDate => this.handleChange(startDate)
+  handleChangeStart = (startDate) => {
+
+    console.log('startDate', startDate)
+
+    startDate = startDate || this.state.startDate;
+
+    let endDate = this.state.endDate;
+
+    if(moment(startDate).isAfter(endDate)){
+      endDate = startDate
+      this.setState({endDate})
+    }
+
+    this.setState({startDate})
+  
+  };
 
   // Triggers handleChage for end date
-  handleChangeEnd = endDate => this.handleChange(endDate)
+  handleChangeEnd = (endDate) => {
 
+    console.log('endDate', endDate)
 
+    endDate = endDate || this.state.endDate;
 
-  addMonths = (today, monthsToAdd) => {
+    const startDate = this.state.startDate
 
-      const maxDate = moment(today)
+    if(moment(startDate).isAfter(endDate)){
+      console.log('true')
+      endDate = startDate
+    }
 
-      return maxDate.add(monthsToAdd, 'months')._d
+    this.setState({endDate})
+
+  }
+
+  componentDidMount(){
+    this.handleGetBookedDates()
   }
 
   render(){
@@ -109,6 +117,9 @@ class Booker extends React.Component {
       <DatePicker
           selected={this.state.startDate}
           selectsStart
+          excludeDates={this.state.bookedDates}
+          minDate={new Date()}
+          maxDate={this.addMonths(new Date(), 5)}
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           onChange={this.handleChangeStart}
@@ -117,6 +128,9 @@ class Booker extends React.Component {
       <DatePicker
           selected={this.state.endDate}
           selectsEnd
+          excludeDates={this.state.bookedDates}
+          minDate={new Date()}
+          maxDate={this.addMonths(new Date(), 5)}
           startDate={this.state.startDate}
           endDate={this.state.endDate}
           onChange={this.handleChangeEnd}
