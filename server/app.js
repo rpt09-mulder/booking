@@ -3,7 +3,8 @@ const bodyParser = require('body-parser');
 // const mongoose = require('mongoose');
 const path = require('path')
 const db = require('./database/db');
-const cors = require('cors')
+const cors = require('cors');
+const moment = require('moment');
 
 const app = express();
 app.use(cors());
@@ -34,7 +35,6 @@ const BookedDates = require('./models/BookedDates');
 // @access    Public
 app.get('/booking/dates/:id', (req, res) => {
 
-  console.log('Getting')
   BookedDates.findOne({listing_id: req.params.id})
     .then(listing => {
       if(listing === null){
@@ -45,24 +45,47 @@ app.get('/booking/dates/:id', (req, res) => {
  });
 
 
+
 // @route     POST api/dates/:id
 // @desc      Books date(s) to the database
 // @access    Public
 app.post('/booking/dates/:id', (req, res) => {
 
-    const newBookedDate = req.body.newBookedDate;
+    let startDate = moment(req.body.startDate);
+    let endDate = moment(req.body.endDate);
+  
+  
+    const days = [];
+    let day = startDate;
 
+    while(day <= endDate){
+      days.push(day.toDate());
+      day = day.clone().add(1, 'd');
+    }
+
+    console.log(days);
     BookedDates.findOne({listing_id: req.params.id})
       .then(listing => {  
 
-        listing.bookedDates.push(newBookedDate)
+        days.forEach(day => {
+
+          listing.bookedDates.push(day)
+
+        })
 
         listing.save().then(() =>{
-          res.status(201).json("Your date has been booked")
+          res.status(201).json("Your dates have been booked")
         })
         
     })
+
+  
+
+
 });
 
 
 module.exports = app
+
+
+

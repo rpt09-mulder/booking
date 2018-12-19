@@ -1,18 +1,15 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
-import { isAfter } from 'date-fns';
 import axios from 'axios';
-import Moment from 'react-moment';
 
 const moment = require('moment')
 
 import "react-datepicker/dist/react-datepicker.css";
 
-
 class Booker extends React.Component {
    state={
       startDate: new Date(),
-      endDate: new Date('12/19/2018'),
+      endDate: new Date(),
       bookedDates: [],
       message: ''
    }
@@ -23,8 +20,8 @@ class Booker extends React.Component {
     if (window.location.pathname !== '/') {
       id = window.location.pathname;
     }
-
-    axios.get(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`)
+    //http://booking-dev2.us-west-1.elasticbeanstalk.com
+    axios.get(`http://localhost:3004/booking/dates${id}`)
     .then(result => {
       this.setState({
         bookedDates: result.data.bookedDates
@@ -38,15 +35,21 @@ class Booker extends React.Component {
 
 
   handleSubmitBooking = () =>{
-     axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${window.location.pathname}`, {
-        startDate: this.state.startDate,
-        endDate: this.state.endDate
+    
+    const startDate = moment(this.state.startDate).startOf('day')
+    const endDate = moment(this.state.endDate).startOf('day')
+
+     axios.post(`http://localhost:3004/booking/dates${window.location.pathname}`, {
+        startDate: startDate,
+        endDate: endDate
       })
       .then(result => {
 
         this.handleGetBookedDates()
         
         this.setState({
+          startDate: new Date(),
+          endDate: new Date(),
           message: result.data
         })
 
@@ -74,8 +77,6 @@ class Booker extends React.Component {
   // Triggerts handleChange for start date
   handleChangeStart = (startDate) => {
 
-    console.log('startDate', startDate)
-
     startDate = startDate || this.state.startDate;
 
     let endDate = this.state.endDate;
@@ -92,14 +93,12 @@ class Booker extends React.Component {
   // Triggers handleChage for end date
   handleChangeEnd = (endDate) => {
 
-    console.log('endDate', endDate)
 
     endDate = endDate || this.state.endDate;
 
     const startDate = this.state.startDate
 
     if(moment(startDate).isAfter(endDate)){
-      console.log('true')
       endDate = startDate
     }
 
