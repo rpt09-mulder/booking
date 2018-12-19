@@ -1,14 +1,17 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
+import isAfter from 'date-fns';
 import axios from 'axios';
 const moment = require('moment');
 import "react-datepicker/dist/react-datepicker.css";
 
 
+const tomorrow = moment(new Date).add(1, 'day')
+
 class Booker extends React.Component {
    state={
       startDate: new Date(),
-      endDate: new Date(),
+      endDate: tomorrow._d,
       bookedDates: [],
       message: ''
    }
@@ -33,6 +36,7 @@ class Booker extends React.Component {
 
   componentDidMount(){
    this.handleGetBookedDates()
+
   }
 
 
@@ -60,11 +64,36 @@ class Booker extends React.Component {
       })
    }
 
-   handleChange = (date) => {
-    this.setState({
-      startDate: date
-    });
+  //  handleChange = (date) => {
+  //   this.setState({
+  //     startDate: date
+  //   });
+  // }
+
+
+  handleChangeStart = ({startDate, endDate}) =>{
+      
+    startDate = startDate || this.state.startDate;
+    endDate = endDate || this.state.endDate;
+
+
+    // if user selects a date before start date (today) then the end date is today
+    if(isAfter(startDate, endDate)){
+        endDate = startDate
+    }
+
+    this.setState({startDate, endDate})
+
   }
+
+
+  // Triggerts handleChange for start date
+  handleChangeStart = startDate => this.handleChange(startDate)
+
+  // Triggers handleChage for end date
+  handleChangeEnd = endDate => this.handleChange(endDate)
+
+
 
   addMonths = (today, monthsToAdd) => {
 
@@ -75,21 +104,25 @@ class Booker extends React.Component {
 
   render(){
     return(
+
       <div>
       <DatePicker
-        selected={this.state.startDate}
-        minDate={new Date()}
-        maxDate={this.addMonths(new Date(), 5)}
-        onChange={this.handleChange}
-        excludeDates={this.state.bookedDates}
+          selected={this.state.startDate}
+          selectsStart
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
+          onChange={this.handleChangeStart}
       />
 
-      <p>{this.state.message}</p>
+      <DatePicker
+          selected={this.state.endDate}
+          selectsEnd
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
+          onChange={this.handleChangeEnd}
+      />
 
-      <input onClick={this.handleSubmitBooking} type="submit" value="Book Now"/>
       </div>
-
-
     )
   }
 
