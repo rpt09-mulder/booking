@@ -111,8 +111,17 @@ class Booker extends React.Component {
   }
 
   render(){
-    return(
 
+    const modal = (
+
+      <div className="booking-modal">
+        <h3>Your Dates Have Been Booked!</h3>
+      </div>
+
+    )
+
+    return(
+    
       <div>
       <DatePicker
           selected={this.state.startDate}
@@ -140,6 +149,9 @@ class Booker extends React.Component {
         <button onClick={this.handleSubmitBooking}>Book Dates</button>
       </div>
 
+      {this.state.message !== '' ? (
+        modal
+      ) : ''}
       </div>
     )
   }
