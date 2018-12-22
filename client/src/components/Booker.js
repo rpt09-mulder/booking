@@ -12,7 +12,7 @@ import "react-datepicker/dist/react-datepicker.css";
 class Booker extends React.Component {
    state={
       startDate: new Date(),
-      endDate: new Date('12/19/2018'),
+      endDate: new Date(),
       bookedDates: [],
       message: ''
    }
