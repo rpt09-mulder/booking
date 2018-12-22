@@ -21,7 +21,7 @@ class Booker extends React.Component {
       id = window.location.pathname;
     }
     //http://booking-dev2.us-west-1.elasticbeanstalk.com
-    axios.get(`http://localhost:3004/booking/dates${id}`)
+    axios.get(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`)
     .then(result => {
       this.setState({
         bookedDates: result.data.bookedDates
@@ -39,7 +39,7 @@ class Booker extends React.Component {
     const startDate = moment(this.state.startDate).startOf('day')
     const endDate = moment(this.state.endDate).startOf('day')
 
-     axios.post(`http://localhost:3004/booking/dates${window.location.pathname}`, {
+     axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${window.location.pathname}`, {
         startDate: startDate,
         endDate: endDate
       })
