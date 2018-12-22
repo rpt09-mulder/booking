@@ -6,7 +6,7 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.join(__dirname, './public'),
-    filename: 'index_bundle.js'
+    filename: './app.js'
   },
   module: {
     rules: [
@@ -26,7 +26,7 @@ module.exports = {
       }
     ]
   },
-  mode: "development",
+
 
   plugins: [
     new HtmlWebpackPlugin({
