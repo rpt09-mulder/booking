@@ -1,6 +1,7 @@
 import React from 'react';
 import DatePicker from "react-datepicker";
 import axios from 'axios';
+import Guests from './guests';
 
 const moment = require('moment')
 
@@ -144,6 +145,8 @@ class Booker extends React.Component {
           endDate={this.state.endDate}
           onChange={this.handleChangeEnd}
       />
+
+      <Guests />
 
       <div>
         <button onClick={this.handleSubmitBooking}>Book Dates</button>
