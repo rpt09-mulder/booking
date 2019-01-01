@@ -1,0 +1,21 @@
+.app-wrapper{
+  display: inline-block;
+  box-sizing: border-box;
+  padding: 2em;
+  border: 1px solid rgb(211, 211, 211);
+}
+
+
+
+.submitButton{
+  background: #FF5B60;
+  color: white;
+  border: none;
+  font-size: 18px;
+  border-radius: 3px;
+  padding: 12.5px 0px;
+  display: block;
+  cursor: pointer;
+  width: 100%
+}
+
