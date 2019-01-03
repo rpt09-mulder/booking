@@ -54,7 +54,6 @@ app.post('/booking/dates/:id', (req, res) => {
     let startDate = moment(req.body.startDate);
     let endDate = moment(req.body.endDate);
   
-  
     const days = [];
     let day = startDate;
 

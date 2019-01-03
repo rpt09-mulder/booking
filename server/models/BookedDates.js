@@ -11,6 +11,10 @@ const BookedDatesSchema = new Schema({
     bookedDates: {
       type: Array,
       required: true,
+    },
+    guests:{
+      type: Array,
+      required: true,
     }
 
 });
