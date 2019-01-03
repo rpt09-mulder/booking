@@ -1,0 +1,68 @@
+.guest-card-choice{
+  display: flex;
+  align-content: center;
+}
+
+
+.guest-card-choice h3{
+  display: inline-block;
+  margin-right: 10px;
+  flex: 2
+}
+
+.guest-increaser-wrapper{
+  flex: 2
+}
+
+.guest-card-wrapper{
+  position: relative;
+  background: white;
+  border: 1px solid rgb(211, 211, 211);
+  margin: 15px 0;
+  border-radius: 3px;
+}
+
+.guests-display{
+  display: block;
+  text-align: center;
+}
+
+.guests-display p {
+  display: inline-block;
+  margin-right: 10px;
+  color: black !important;
+}
+
+
+.guestCard{
+  border: 1px solid rgb(230, 230, 230);
+  display: inline-block;
+  position: absolute;
+  background: white;
+  box-sizing: border-box;
+  padding: 5px 15px;
+  width: 100%;
+}
+
+.guest-icon{
+  display: inline-block;
+  align-self: center;
+}
+
+.guest-icon:hover {
+  color: #028489;
+  cursor: pointer;
+}
+
+
+.guest-card-number{
+  display: inline-block;
+  padding: 10px 14px;
+  border: 1px solid rgb(196, 196, 196);
+  margin: 10px;
+  border-radius: 100px;
+}
+
+.guest-card-outer-wrapper p {
+  color: grey;
+}
