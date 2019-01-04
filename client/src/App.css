@@ -3,6 +3,9 @@
   box-sizing: border-box;
   padding: 2em;
   border: 1px solid rgb(211, 211, 211);
+  max-width: 378px;
+  position: absolute;
+  top: 200px
 }
 
 
