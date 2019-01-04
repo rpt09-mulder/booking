@@ -25,7 +25,8 @@
     "react-datepicker": "^2.0.0",
     "react-dates": "^18.2.2",
     "react-dom": "^16.6.3",
-    "react-moment": "^0.8.4"
+    "react-moment": "^0.8.4",
+    "react-sticky": "^6.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
