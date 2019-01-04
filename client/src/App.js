@@ -3,6 +3,7 @@ import DateSelector from './components/DateSelector';
 import Guests from './components/Guests';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
+import { StickyContainer, Sticky } from 'react-sticky';
 import { faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 
 import './App.css'
@@ -164,12 +165,20 @@ class App extends React.Component {
       this.handleGetBookedDates()
     }
 
+    
   
 
   render(){
     
     return(
-        <div className="app-wrapper">
+      <div>
+      <div style={{ height: 650 }}></div>
+      <StickyContainer className="sticky-wrapper">
+         
+          <Sticky>
+         { ({ style }) => (
+        <div className="app-wrapper" style={style}>
+          
           <DateSelector
           // Variables
           startDate={this.state.startDate}
@@ -198,12 +207,15 @@ class App extends React.Component {
            increaseInfantCount={this.increaseInfantCount}
            decreaseInfantCount={this.decreaseInfantCount}
            />
-
-
        
           <input className="submitButton" type="submit" onClick={this.handleSubmitBooking} value="Request to Book"/>
 
         </div>
+        )}
+        </Sticky>
+        <div style={{minHeight: 1000 }}></div>
+      </StickyContainer>
+      </div>
     )
   }
 }

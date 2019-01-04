@@ -3,9 +3,20 @@
   box-sizing: border-box;
   padding: 2em;
   border: 1px solid rgb(211, 211, 211);
+  width: 378px !important;
+  background: white;
+  float: right;
+  left: inherit !important;
+  right: 50px !important;
+  margin-top: 50px;
 }
 
-
+.sticky-wrapper{
+  position: relative;
+  right: 50px;
+  float: right;
+  width: 378px !important;
+}
 
 .submitButton{
   background: #FF5B60;
