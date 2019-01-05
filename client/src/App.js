@@ -15,9 +15,11 @@ library.add(faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
 class App extends React.Component {
 
   state={
-    startDate: new Date(),
-    endDate: new Date(),
+    startDate: '',
+    endDate: '',
+
     bookedDates: [],
+
     message: '',
     adults: 0,
     children: 0,
@@ -25,17 +27,33 @@ class App extends React.Component {
   }
 
 
+  handleStartDate = (startDate) =>{
+    this.setState({
+      startDate: startDate
+    })
+  }
 
-  // DateSelector Logic
+  handleEndDate = (endDate) => {
+    this.setState({
+      endDate: endDate
+    })
+  }
+
+  handleGetDates = () => {
+    
+  }
+
+
   handleGetBookedDates = () => {
 
     let id = '/1';
     if (window.location.pathname !== '/') {
       id = window.location.pathname;
     }
-
-    
-    axios.get(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`)
+    //http://http://localhost:3004/dates${id}
+    //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}
+    axios.get(`http://http://localhost:3004/dates${id}`)
+    console.log('Getting')
     .then(result => {
       this.setState({
         bookedDates: result.data.bookedDates
@@ -55,8 +73,9 @@ class App extends React.Component {
     
       const startDate = moment(this.state.startDate).startOf('day')
       const endDate = moment(this.state.endDate).startOf('day')
-
-       axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`, {
+      //http://http://localhost:3004/dates${id}
+      //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}
+       axios.post(`http://http://localhost:3004/dates${id}`, {
           startDate: startDate,
           endDate: endDate,
           adults: this.state.adults,
@@ -85,34 +104,7 @@ class App extends React.Component {
         })
      }
 
-     handleChangeStart = (startDate) => {
-
-      startDate = startDate || this.state.startDate;
   
-      let endDate = this.state.endDate;
-  
-      if(moment(startDate).isAfter(endDate)){
-        endDate = startDate
-        this.setState({endDate})
-      }
-  
-      this.setState({startDate})
-    
-    };
-
-
-    handleChangeEnd = (endDate) => {
-      endDate = endDate || this.state.endDate;
-      const startDate = this.state.startDate
-      if(moment(startDate).isAfter(endDate)){
-        endDate = startDate
-      }
-      this.setState({endDate})
-  
-    }
-
-  
-
     // Guest Logic
     // Adults
     increaseAdultCount = () => {
@@ -161,9 +153,9 @@ class App extends React.Component {
   
 
     // Life Cycle Methods
-    componentDidMount(){
-      this.handleGetBookedDates()
-    }
+    // componentDidMount(){
+    //   this.handleGetBookedDates()
+    // }
 
     
   
@@ -179,19 +171,9 @@ class App extends React.Component {
         <div className="app-wrapper" style={style}>
           
           <DateSelector
-          // Variables
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          bookedDates={this.state.bookedDates}
-          message={this.message}
-          // Methods
-          handleGetBookedDates={this.handleGetBookedDates}
-          handleChangeEnd={this.handleChangeEnd}
-          handleSubmitBooking={this.handleSubmitBooking}
-          handleChangeStart={this.handleChangeStart}
-          handleChangeEnd={this.handleChangeEnd}
+            handleStartDate={this.handleStartDate}
+            handleEndDate={this.handleEndDate}
           />
-
 
            <Guests 
            // Variables

@@ -88,7 +88,7 @@ class Guests extends React.Component {
     }
 
     return(
-      <div class="guest-card-outer-wrapper">
+      <div className="guest-card-outer-wrapper">
         <p>Guests</p>
         <div className="guest-card-wrapper">
           <div onClick={this.showCard} className="guests-display">
