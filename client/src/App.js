@@ -212,7 +212,7 @@ class App extends React.Component {
         </div>
         )}
         </Sticky>
-        <div style={{minHeight: 1000 }}></div>
+        <div style={{minHeight: 2000 }}></div>
       </StickyContainer>
       </div>
     )
