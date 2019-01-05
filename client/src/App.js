@@ -56,7 +56,7 @@ class App extends React.Component {
       const startDate = moment(this.state.startDate).startOf('day')
       const endDate = moment(this.state.endDate).startOf('day')
 
-       axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${window.location.pathname}`, {
+       axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`, {
           startDate: startDate,
           endDate: endDate,
           adults: this.state.adults,
