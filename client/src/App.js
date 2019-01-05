@@ -172,7 +172,6 @@ class App extends React.Component {
     
     return(
       <div>
-      <div style={{ height: 650 }}></div>
       <StickyContainer className="sticky-wrapper">
          
           <Sticky>
