@@ -5,8 +5,11 @@ const path = require('path')
 const db = require('./database/db');
 const cors = require('cors');
 const moment = require('moment');
+const morgan = require('morgan')
+
 
 const app = express();
+app.use(morgan('tiny'))
 app.use(cors());
 
 // Handling errors to be communicated to client
