@@ -28,6 +28,7 @@ showCard = () => {
 }
 
 componentDidMount() {
+  this.updateParentState()
   document.addEventListener('mousedown', this.handleClickOutside);
 }
 

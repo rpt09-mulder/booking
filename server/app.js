@@ -84,10 +84,15 @@ app.post('/booking/dates/:id', (req, res) => {
               return;
             } else {
 
-              
+              listing.details.push({
+                date: day.toDate(),
+                guests: guests
+              })
 
+            listing.save().then(() =>{
+               res.status(201).send({validDates: 'Congrats, your dates have been booked!'})
+              })
             }
-
             day = day.clone().add(1, 'd');
           }
       });

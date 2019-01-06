@@ -26,6 +26,7 @@ class App extends React.Component {
     guests: [],
     days: [],
 
+    successMessage: null,
     errorMessage: '',
   }
 
@@ -76,9 +77,15 @@ class App extends React.Component {
         })
         .then(result => {
           this.handleGetBookedDates()
+          this.setState({
+            successMessage: result.data.validDates
+          })
 
-          console.log(result)
-      
+          setTimeout(() =>{
+            this.setState({
+              successMessage: ''
+            })
+          }, 3000)
         })
         .catch(err => {
           this.setState({
@@ -100,6 +107,21 @@ class App extends React.Component {
     }
 
   render(){
+
+    let successModal;
+    
+    if(this.state.successMessage){
+
+      successModal = (
+        <div className="success-modal">
+          
+          <div className="success-message">{this.state.successMessage}</div>
+    
+        </div>)
+
+    } else {
+      successModal = null;
+    }
     
     return(
       <div>
@@ -107,6 +129,8 @@ class App extends React.Component {
           <Sticky>
          { ({ style }) => (
         <div className="app-wrapper" style={style}>
+
+          {successModal}
           <DateSelector
             handleStartDate={this.handleStartDate}
             handleEndDate={this.handleEndDate}
