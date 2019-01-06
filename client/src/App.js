@@ -1,6 +1,7 @@
 import React from 'react';
 import DateSelector from './components/DateSelector';
 import Guests from './components/Guests';
+import Reviews from './components/Reviews'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
 import { StickyContainer, Sticky } from 'react-sticky';
@@ -177,7 +178,7 @@ class App extends React.Component {
           <Sticky>
          { ({ style }) => (
         <div className="app-wrapper" style={style}>
-          
+          <Reviews />
           <DateSelector
           // Variables
           startDate={this.state.startDate}
