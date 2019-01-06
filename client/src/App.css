@@ -27,6 +27,16 @@
   padding: 12.5px 0px;
   display: block;
   cursor: pointer;
-  width: 100%
+  margin-top: 40px;
+  width: 100%;
 }
 
+
+.error-message{
+  padding: 10px;
+  font-size: 13px;
+  color: red;
+  top: 220px;
+  left: 60px;
+  position: absolute;
+}

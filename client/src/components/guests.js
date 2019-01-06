@@ -6,7 +6,7 @@ import './Guests.css'
 class Guests extends React.Component {
   state= {
     card: false,
-    adults: 0,
+    adults: 1,
     children: 0,
     infants: 0,
   }
@@ -56,7 +56,7 @@ increaseAdultCount = () => {
 }
 
 decreaseAdultCount = () => {
-  if(this.state.adults > 0){
+  if(this.state.adults > 1){
     this.setState((prevState) => ({
       adults: prevState.adults - 1
     }))

@@ -26,7 +26,7 @@ class App extends React.Component {
     guests: [],
     days: [],
 
-    message: '',
+    errorMessage: '',
   }
 
 
@@ -76,21 +76,21 @@ class App extends React.Component {
         })
         .then(result => {
           this.handleGetBookedDates()
-          this.setState({
-            startDate: new Date(),
-            endDate: new Date(),
-            message: result.data
-          })
-  
-          setTimeout(() =>{
-            this.setState({
-              message: ''
-            })
-          }, 3000)
-  
+
+          console.log(result)
+      
         })
         .catch(err => {
-          console.log(err)
+          this.setState({
+            errorMessage: err.response.data.invalidDates
+          })
+
+        setTimeout(() =>{
+          this.setState({
+            errorMessage: ''
+          })
+        }, 3000)
+
         })
      }
 
@@ -117,7 +117,7 @@ class App extends React.Component {
            guests={this.guests}
            handleGuests={this.handleGuests}
           />
-
+          <p className="error-message">{this.state.errorMessage}</p>
           <input className="submitButton" type="submit" onClick={this.handleSubmitBooking} value="Request to Book"/>
         </div>
         )}

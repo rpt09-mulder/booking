@@ -1,6 +1,6 @@
 const faker = require('faker');
 const db = require('./database/db');
-
+const moment = require('moment')
 
 // Load Listings Model
 const Listing = require('./models/Listing');
@@ -17,8 +17,12 @@ const seeder = () => {
       let details = [];
 
       for(let i = 1; i <= 50; i++){
+
+        let d = faker.date.between('2018-01-01', '2019-09-30');
+        const newD = moment(d).startOf('day')
+        
         detail = {
-          date: faker.date.between('2018-01-01', '2019-12-30'),
+          date: newD,
           guests: {
             adults: faker.random.number({'min': 1, 'max': 3}),
             children: faker.random.number({'min': 0, 'max': 3}),
@@ -48,44 +52,6 @@ const seeder = () => {
 seeder();
 
 
-
-
-
-
-  //   // Droping existing sample data
-  //   BookedDates.deleteMany({}, () => {
-      
-  //     console.log('Removed Sample Data')
-
-  //     // Loop for and create 1 listing
-  //     for(let j = 1; j <= 100; j++){
-
-  //     // for each listing create 50 dates and 50 guests objects with random guest counts
-  //     for(let i = 0; i < 50; i++){
-
-  //       let date = faker.date.between('2018-01-01', '2019-12-30');
-
-
-
-  //     };
-
-  //     const newBookedDates = new BookedDates({
-  //       listing_id: j,
-  //       details: new Details({
-
-  //       }),
-
-  //     });
-      
-  //     newBookedDates.save((err) => {
-  //       if(err){
-  //         console.log(err)
-  //       }
-  //     })
-      
-  //   };
-  //   console.log('Sample data has been saved to DB')
-  // })
 
 
 
