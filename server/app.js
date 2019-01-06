@@ -37,13 +37,21 @@ const BookedDates = require('./models/BookedDates');
 // @desc      Gets all booked dates for a listing
 // @access    Public
 app.get('/booking/dates/:id', (req, res) => {
-  console.log('Getting')
+
   BookedDates.findOne({listing_id: req.params.id})
     .then(listing => {
+
       if(listing === null){
         res.status(404).json({listingnotfound: 'No listing found'})
       }
-      res.json(listing)
+      // only sending back days booked
+      const days = [];
+
+      listing.bookedDates.forEach((entry) => {
+        days.push(entry.date)
+      })
+
+      res.json(days)
     })
  });
 
@@ -54,36 +62,51 @@ app.get('/booking/dates/:id', (req, res) => {
 // @access    Public
 app.post('/booking/dates/:id', (req, res) => {
 
+    console.log('posting')
+
     let startDate = moment(req.body.startDate);
     let endDate = moment(req.body.endDate);
-  
+    let guests = req.body.guests
+
     const days = [];
     let day = startDate;
 
+    // while(day <= endDate){
+    //   // add the guests to each day being booked
+    //   day.guests = guests
+    //   // push each day between end and start date into array
+    //   days.push(day.toDate());
+    //   // add 1 to start date to reach end date and reach base case of while loop
+    //   day = day.clone().add(1, 'd');
+    // }
+
     while(day <= endDate){
-      days.push(day.toDate());
+      // create an object for each day
+      const bookedDay = {};
+      // transform moment object to js date object and add to bookedDay object
+      bookedDay.date = day.toDate();
+      // add guest to each day that is beeing booked
+      bookedDay.guests = guests;
+      // push booked day into day array
+      days.push(bookedDay)
+      // add 1 to start date to reach end date and set equal to new day in order to reach base case of while loop
       day = day.clone().add(1, 'd');
     }
 
-    console.log(days);
     BookedDates.findOne({listing_id: req.params.id})
       .then(listing => {  
-
+        
         days.forEach(day => {
 
+          if(day === listing.bookedDates)
+          console.log(day)
           listing.bookedDates.push(day)
-
         })
 
         listing.save().then(() =>{
           res.status(201).json("Your dates have been booked")
         })
-        
     })
-
-  
-
-
 });
 
 

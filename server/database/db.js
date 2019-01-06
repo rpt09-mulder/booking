@@ -7,8 +7,6 @@ const mongodbUri = 'mongodb://insivika:insivika123@ds139675.mlab.com:39675/fireb
 
 mongoose.connect(mongodbUri, { useNewUrlParser: true });
 
-
-
 const db = mongoose.connection;
 
 // Connecting to DB

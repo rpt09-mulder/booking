@@ -2,6 +2,9 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+// Load the BookedDates Model
+const Details = require('./Details');
+
 const BookedDatesSchema = new Schema({
 
     listing_id: {
@@ -12,11 +15,8 @@ const BookedDatesSchema = new Schema({
       type: Array,
       required: true,
     },
-    guests:{
-      type: Array,
-      required: true,
-    }
 
 });
+
 
 module.exports = BookedDates = mongoose.model('bookedDates', BookedDatesSchema);

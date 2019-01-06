@@ -20,9 +20,17 @@ const seeder = () => {
 
       // Loop 
       for(let i = 0; i < 50; i++){
-        let randomDate = faker.date.between('2018-12-01', '2019-06-01');
-        // let cleanDate = moment(randomDate).format('L')
-        bookedDays.push(randomDate)
+
+        let randomEntry = {}
+
+        randomEntry.date = faker.date.between('2018-12-01', '2019-06-01');
+        randomEntry.guests = [
+          {adults: faker.random.number({'min': 0, 'max': 5})},
+          {children : faker.random.number({'min': 0, 'max': 5})},
+          {infants : faker.random.number({'min': 0, 'max': 5})}
+        ]
+        
+        bookedDays.push(randomEntry)
       };
 
       const newBookedDates = new BookedDates({
