@@ -43,17 +43,17 @@ app.get('/booking/dates/:id', (req, res) => {
 
       console.log(listing)
 
-      // if(listing === null){
-      //   res.status(404).json({listingnotfound: 'No listing found'})
-      // }
-      // // only sending back days booked
-      // const days = [];
+      if(listing === null){
+        res.status(404).json({listingnotfound: 'No listing found'})
+      }
+      // only sending back days booked
+      const days = [];
 
-      // listing.bookedDates.forEach((entry) => {
-      //   days.push(entry.date)
-      // })
+      listing.details.forEach((detail) => {
+        days.push(detail.date)
+      })
 
-      // res.json(days)
+      res.json(days)
     })
  });
 
