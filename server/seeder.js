@@ -1,7 +1,6 @@
 const faker = require('faker');
-const moment = require('moment');
-const mongoose = require('mongoose');
 const db = require('./database/db');
+
 
 // Load Listings Model
 const Listing = require('./models/Listing');
@@ -12,19 +11,28 @@ const seeder = () => {
   // Droping existing sample data
   Listing.deleteMany({}, () => {
 
+
     for(let j = 1; j <= 100; j++){
 
-      const newListing = new Listing({
+      let details = [];
 
-        listing_id: j,
-        details: [{
+      for(let i = 1; i <= 50; i++){
+        detail = {
           date: faker.date.between('2018-01-01', '2019-12-30'),
           guests: {
             adults: faker.random.number({'min': 1, 'max': 3}),
             children: faker.random.number({'min': 0, 'max': 3}),
             infants: faker.random.number({'min': 0, 'max': 3}),
           }
-        }]
+        }
+        details.push(detail)
+      }
+
+      const newListing = new Listing({
+
+        listing_id: j,
+
+        details: details
       }) 
 
      newListing.save((err) => {
