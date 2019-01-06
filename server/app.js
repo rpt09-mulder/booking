@@ -26,8 +26,8 @@ app.use(bodyParser.json());
 
 // Serving Static Files
 app.use(express.static(path.join(__dirname, '../client/public')));
-
 app.use('/:id', express.static(path.join(__dirname, '../client/public')));
+
 
 // Load the BookedDates Model
 const BookedDates = require('./models/BookedDates');
@@ -37,7 +37,7 @@ const BookedDates = require('./models/BookedDates');
 // @desc      Gets all booked dates for a listing
 // @access    Public
 app.get('/booking/dates/:id', (req, res) => {
-
+  console.log('Getting')
   BookedDates.findOne({listing_id: req.params.id})
     .then(listing => {
       if(listing === null){

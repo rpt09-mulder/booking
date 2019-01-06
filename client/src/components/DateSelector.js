@@ -12,7 +12,6 @@ class DateSelector extends React.Component{
     state={
       startDate: new Date(),
       endDate: new Date(),
-      bookedDates: [],
     }
 
    addMonths = (today, monthsToAdd) => {
@@ -35,19 +34,13 @@ class DateSelector extends React.Component{
     
     
     handleChangeStart = (startDate) => {
-
       startDate = startDate || this.state.startDate;
-
       let endDate = this.state.endDate;
-
       if(moment(startDate).isAfter(endDate)){
         endDate = startDate
         this.setState({endDate}, this.updateParentState)
-        
       }
-
       this.setState({startDate}, this.updateParentState)
-      
     };
 
 
@@ -58,12 +51,11 @@ class DateSelector extends React.Component{
         endDate = startDate
       }
       this.setState({endDate}, this.updateParentState)
-      
     }
  
 
   render(){
-
+    
     return(
     
       <div>
@@ -72,7 +64,7 @@ class DateSelector extends React.Component{
       <DatePicker
           selected={this.state.startDate}
           selectsStart
-          excludeDates={this.state.bookedDates}
+          excludeDates={this.props.bookedDates}
           minDate={new Date()}
           maxDate={this.addMonths(new Date(), 5)}
           startDate={this.state.startDate}
@@ -90,7 +82,7 @@ class DateSelector extends React.Component{
       <DatePicker
           selected={this.state.endDate}
           selectsEnd
-          excludeDates={this.state.bookedDates}
+          excludeDates={this.props.bookedDates}
           minDate={new Date()}
           maxDate={this.addMonths(new Date(), 5)}
           startDate={this.state.startDate}
