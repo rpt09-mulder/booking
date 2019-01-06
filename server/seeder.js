@@ -3,51 +3,82 @@ const moment = require('moment');
 const mongoose = require('mongoose');
 const db = require('./database/db');
 
-// Load Profile Model
-const BookedDates = require('./models/BookedDates');
+// Load Listings Model
+const Listing = require('./models/Listing');
+
 
 const seeder = () => {
 
-    // Droping existing sample data
-    BookedDates.deleteMany({}, () => {
-      
-      console.log('Removed Sample Data')
+  // Droping existing sample data
+  Listing.deleteMany({}, () => {
 
-      // Loop for each listing
-      for(let j = 1; j <= 100; j++){
+    for(let j = 1; j <= 100; j++){
 
-      let bookedDays = []
+      const newListing = new Listing({
 
-      // Loop 
-      for(let i = 0; i < 50; i++){
-
-        let randomEntry = {}
-
-        randomEntry.date = faker.date.between('2018-12-01', '2019-06-01');
-        randomEntry.guests = [
-          {adults: faker.random.number({'min': 0, 'max': 5})},
-          {children : faker.random.number({'min': 0, 'max': 5})},
-          {infants : faker.random.number({'min': 0, 'max': 5})}
-        ]
-        
-        bookedDays.push(randomEntry)
-      };
-
-      const newBookedDates = new BookedDates({
         listing_id: j,
-        bookedDates: bookedDays,
-      });
-      
-      newBookedDates.save((err) => {
+        details: [{
+          date: faker.date.between('2018-01-01', '2019-12-30'),
+          guests: {
+            adults: faker.random.number({'min': 1, 'max': 3}),
+            children: faker.random.number({'min': 0, 'max': 3}),
+            infants: faker.random.number({'min': 0, 'max': 3}),
+          }
+        }]
+      }) 
+
+     newListing.save((err) => {
         if(err){
           console.log(err)
         }
       })
-      
-    };
-    console.log('Sample data has been saved to DB')
-  })
-};
+    }
+ })
+}
 
 // Call Seeder func
 seeder();
+
+
+
+
+
+
+  //   // Droping existing sample data
+  //   BookedDates.deleteMany({}, () => {
+      
+  //     console.log('Removed Sample Data')
+
+  //     // Loop for and create 1 listing
+  //     for(let j = 1; j <= 100; j++){
+
+  //     // for each listing create 50 dates and 50 guests objects with random guest counts
+  //     for(let i = 0; i < 50; i++){
+
+  //       let date = faker.date.between('2018-01-01', '2019-12-30');
+
+
+
+  //     };
+
+  //     const newBookedDates = new BookedDates({
+  //       listing_id: j,
+  //       details: new Details({
+
+  //       }),
+
+  //     });
+      
+  //     newBookedDates.save((err) => {
+  //       if(err){
+  //         console.log(err)
+  //       }
+  //     })
+      
+  //   };
+  //   console.log('Sample data has been saved to DB')
+  // })
+
+
+
+

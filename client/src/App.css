@@ -7,13 +7,13 @@
   background: white;
   float: right;
   left: inherit !important;
-  right: 50px !important;
+  right: 100px !important;
   margin-top: 50px;
 }
 
 .sticky-wrapper{
   position: relative;
-  right: 50px;
+  right: 100px;
   float: right;
   width: 378px !important;
 }

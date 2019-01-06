@@ -12,14 +12,19 @@ const moment = require('moment')
 
 library.add(faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
 
+
+let id = '/1';
+if (window.location.pathname !== '/') {
+  id = window.location.pathname;
+}
+
 class App extends React.Component {
 
   state={
     startDate: '',
     endDate: '',
     guests: [],
-    bookedDates: [],
-
+    days: [],
 
     message: '',
   }
@@ -34,25 +39,24 @@ class App extends React.Component {
   }
 
   handleGuests = (guests) => {
-    console.log(guests)
     this.setState({guests})
   }
 
 
   handleGetBookedDates = () => {
-
-    let id = '/1';
-    if (window.location.pathname !== '/') {
-      id = window.location.pathname;
-    }
-
     //http://http://localhost:3004/dates${id}
     //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}
     axios.get(`http://localhost:3004/booking/dates${id}`)
     .then(result => {
-      console.log(window.location.pathname)
+      
+      const days = [];
+
+      result.data.forEach((day) => {
+        days.push(new Date(day))
+      })
+
       this.setState({
-        bookedDates: result.data.bookedDates
+        days: days
       })
     })
     .catch(err => {
@@ -61,27 +65,17 @@ class App extends React.Component {
     }
 
     handleSubmitBooking = () =>{
-
-      let id = '/1';
-      if (window.location.pathname !== '/') {
-        id = window.location.pathname;
-      }
-    
       const startDate = moment(this.state.startDate).startOf('day')
       const endDate = moment(this.state.endDate).startOf('day')
       //http://http://localhost:3004/dates${id}
       //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}
-       axios.post(`http://http://localhost:3004/dates${id}`, {
+       axios.post(`http://localhost:3004/booking/dates${id}`, {
           startDate: startDate,
           endDate: endDate,
-          adults: this.state.adults,
-          children: this.state.children,
-          infants: this.state.infants
+          guests: this.state.guests
         })
         .then(result => {
-  
           this.handleGetBookedDates()
-          
           this.setState({
             startDate: new Date(),
             endDate: new Date(),
@@ -116,7 +110,7 @@ class App extends React.Component {
           <DateSelector
             handleStartDate={this.handleStartDate}
             handleEndDate={this.handleEndDate}
-            bookedDates={this.state.bookedDates}
+            bookedDates={this.state.days}
           />
 
            <Guests

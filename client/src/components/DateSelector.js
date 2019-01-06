@@ -52,6 +52,10 @@ class DateSelector extends React.Component{
       }
       this.setState({endDate}, this.updateParentState)
     }
+
+    componentWillReceiveProps(){
+     
+    }
  
 
   render(){

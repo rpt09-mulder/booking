@@ -30,7 +30,7 @@ app.use('/:id', express.static(path.join(__dirname, '../client/public')));
 
 
 // Load the BookedDates Model
-const BookedDates = require('./models/BookedDates');
+const BookedDates = require('./models/Listing');
 
 
 // @route     GET api/dates/:id

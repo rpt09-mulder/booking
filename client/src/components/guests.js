@@ -13,11 +13,12 @@ class Guests extends React.Component {
 
 
 updateParentState = () => {
-  this.props.handleGuests([
-    this.state.adults,
-    this.state.children,
-    this.state.infants
-  ])
+  const guests = {}
+  
+  guests.adults = this.state.adults;
+  guests.children =  this.state.children,
+  guests.infants = this.state.infants
+  this.props.handleGuests(guests)
 }
   
 showCard = () => {
