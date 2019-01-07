@@ -108,7 +108,7 @@ class App extends React.Component {
 
   render(){
 
-    successModal === null;
+    let successModal = null;
     
     if(this.state.successMessage){
 
