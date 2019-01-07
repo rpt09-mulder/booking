@@ -1,17 +1,17 @@
 import React from 'react';
 import DateSelector from './components/DateSelector';
 import Guests from './components/Guests';
-import Reviews from './components/Reviews'
+import Overview from './components/Overview'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
+import { faStarHalf, faStar, faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 
 import './App.css'
 
 const moment = require('moment')
 
-library.add(faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
+library.add(faIgloo, faPlusCircle, faMinusCircle, faArrowRight, faStar, faStarHalf)
 
 class App extends React.Component {
 
@@ -37,25 +37,27 @@ class App extends React.Component {
 
     
     axios.get(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`)
-    .then(result => {
-      this.setState({
-        bookedDates: result.data.bookedDates
+     .then(result => {
+       this.setState({
+         bookedDates: result.data.bookedDates
+       })
       })
-    })
-    .catch(err => {
+     .catch(err => {
       console.log(err)
-    })
+     })
     }
 
     handleSubmitBooking = () =>{
 
       let id = '/1';
-      if (window.location.pathname !== '/') {
-        id = window.location.pathname;
-      }
+
+        if (window.location.pathname !== '/') {
+          id = window.location.pathname;
+        }
     
-      const startDate = moment(this.state.startDate).startOf('day')
-      const endDate = moment(this.state.endDate).startOf('day')
+      const startDate = moment(this.state.startDate).startOf('day');
+
+      const endDate = moment(this.state.endDate).startOf('day');
 
        axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`, {
           startDate: startDate,
@@ -178,7 +180,7 @@ class App extends React.Component {
           <Sticky>
          { ({ style }) => (
         <div className="app-wrapper" style={style}>
-          <Reviews />
+          <Overview />
           <DateSelector
           // Variables
           startDate={this.state.startDate}
