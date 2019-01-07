@@ -8,7 +8,9 @@ const Stars = ({average, count}) => {
 
   const starArray = [];
 
-  for(let i = 0; i < average; i++){
+  let i = 0;
+
+  for(; i < average; i++){
     starArray.push(<FontAwesomeIcon key={i} className="star-icon" icon="star"/>)
   }
   if(half){
@@ -17,9 +19,9 @@ const Stars = ({average, count}) => {
 
   return (
     <div>
-      <span className="stars">
+       <a className="stars" href="#reviews">
        {starArray.map(star => star)}
-       </span>
+       </a>
        <span className="count">
         {count}
        </span>
