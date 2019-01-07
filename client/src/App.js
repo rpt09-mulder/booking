@@ -108,7 +108,7 @@ class App extends React.Component {
 
   render(){
 
-    let successModal;
+    successModal === null;
     
     if(this.state.successMessage){
 
@@ -118,10 +118,7 @@ class App extends React.Component {
           <div className="success-message">{this.state.successMessage}</div>
     
         </div>)
-
-    } else {
-      successModal = null;
-    }
+    } 
     
     return(
       <div>
