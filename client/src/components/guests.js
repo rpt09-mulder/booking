@@ -5,34 +5,95 @@ import './Guests.css'
 
 class Guests extends React.Component {
   state= {
-    card: false
+    card: false,
+    adults: 1,
+    children: 0,
+    infants: 0,
   }
 
-  showCard = () => {
+
+updateParentState = () => {
+  const guests = {}
+  
+  guests.adults = this.state.adults;
+  guests.children =  this.state.children,
+  guests.infants = this.state.infants
+  this.props.handleGuests(guests)
+}
+  
+showCard = () => {
+  this.setState({
+    card: true
+  })
+}
+
+componentDidMount() {
+  this.updateParentState()
+  document.addEventListener('mousedown', this.handleClickOutside);
+}
+
+componentWillUnmount() {
+  document.removeEventListener('mousedown', this.handleClickOutside);
+}
+
+setWrapperRef = (node) => {
+  this.wrapperRef = node;
+}
+
+handleClickOutside = (event) => {
+  if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
     this.setState({
-      card: true
+      card: false
     })
+    this.updateParentState()
   }
+}
 
-  componentDidMount() {
-    document.addEventListener('mousedown', this.handleClickOutside);
-  }
+// Adults
+increaseAdultCount = () => {
+  this.setState((prevState) => ({
+    adults: prevState.adults + 1
+  }))
+}
 
-  componentWillUnmount() {
-    document.removeEventListener('mousedown', this.handleClickOutside);
+decreaseAdultCount = () => {
+  if(this.state.adults > 1){
+    this.setState((prevState) => ({
+      adults: prevState.adults - 1
+    }))
   }
+}
 
-  setWrapperRef = (node) => {
-    this.wrapperRef = node;
+// Children
+increaseChildCount = () => {
+  this.setState((prevState) => ({
+    children: prevState.children + 1
+  }))
+}
+  
+decreaseChildCount = () => {
+  if(this.state.children > 0){
+    this.setState((prevState) => ({
+      children: prevState.children - 1
+    }))
   }
+}
 
-  handleClickOutside = (event) => {
-    if (this.wrapperRef && !this.wrapperRef.contains(event.target)) {
-      this.setState({
-        card: false
-      })
-    }
+// Infants
+increaseInfantCount = () => {
+  this.setState((prevState) => ({
+    infants: prevState.infants + 1
+  }))
+}
+
+decreaseInfantCount = () => {
+  if(this.state.infants > 0){
+    this.setState((prevState) => ({
+      infants: prevState.infants - 1
+    }))
   }
+}
+  
 
   render(){
     let guestCard = null;
@@ -42,44 +103,43 @@ class Guests extends React.Component {
 
                     <div className="guest-card-choice">
                         <h3>Adults</h3>
-                        <div className="guest-icon" onClick={this.props.increaseAdultCount}>
+                        <div className="guest-icon" onClick={this.increaseAdultCount}>
                           <FontAwesomeIcon icon="plus-circle" />
                         </div>
 
                         <div className="guest-card-number">
-                            {this.props.adults}
+                            {this.state.adults}
                         </div>
-
-                        <div className="guest-icon" onClick={this.props.decreaseAdultCount}>
+                        <div className="guest-icon" onClick={this.decreaseAdultCount}>
                            <FontAwesomeIcon icon="minus-circle" />
                         </div>
 
                      </div>
                      <div className="guest-card-choice">
                          <h3>Children</h3>
-                          <div className="guest-icon" onClick={this.props.increaseChildCount}>
+                          <div className="guest-icon" onClick={this.increaseChildCount}>
                             <FontAwesomeIcon icon="plus-circle" />
                           </div>
 
                           <div className="guest-card-number">
-                              {this.props.children}
+                              {this.state.children}
                           </div>
 
-                          <div className="guest-icon" onClick={this.props.decreaseChildCount}>
+                          <div className="guest-icon" onClick={this.decreaseChildCount}>
                             <FontAwesomeIcon icon="minus-circle" />
                           </div>
                       </div>
                       <div className="guest-card-choice">
                         <h3>Infants</h3>
-                        <div className="guest-icon" onClick={this.props.increaseInfantCount}>
+                        <div className="guest-icon" onClick={this.increaseInfantCount}>
                           <FontAwesomeIcon icon="plus-circle" />
                         </div>
 
                         <div className="guest-card-number">
-                            {this.props.infants}
+                            {this.state.infants}
                         </div>
 
-                        <div className="guest-icon" onClick={this.props.decreaseInfantCount}>
+                        <div className="guest-icon" onClick={this.decreaseInfantCount}>
                            <FontAwesomeIcon icon="minus-circle" />
                         </div>
 
@@ -88,13 +148,13 @@ class Guests extends React.Component {
     }
 
     return(
-      <div class="guest-card-outer-wrapper">
+      <div className="guest-card-outer-wrapper">
         <p>Guests</p>
         <div className="guest-card-wrapper">
           <div onClick={this.showCard} className="guests-display">
-              <p className="guest-choice">{this.props.adults} adults,</p>
-              <p className="guest-choice">{this.props.children} children,</p>
-              <p className="guest-choice">{this.props.infants} infants</p>
+              <p className="guest-choice">{this.state.adults} adults,</p>
+              <p className="guest-choice">{this.state.children} children,</p>
+              <p className="guest-choice">{this.state.infants} infants</p>
           </div>
           <div>
             {guestCard}

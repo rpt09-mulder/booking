@@ -12,33 +12,52 @@ const moment = require('moment')
 
 library.add(faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
 
+
+let id = '/1';
+if (window.location.pathname !== '/') {
+  id = window.location.pathname;
+}
+
 class App extends React.Component {
 
   state={
-    startDate: new Date(),
-    endDate: new Date(),
-    bookedDates: [],
-    message: '',
-    adults: 0,
-    children: 0,
-    infants: 0,
+    startDate: '',
+    endDate: '',
+    guests: [],
+    days: [],
+
+    successMessage: null,
+    errorMessage: '',
   }
 
 
+  handleStartDate = (startDate) =>{
+    this.setState({startDate})
+  }
 
-  // DateSelector Logic
+  handleEndDate = (endDate) => {
+    this.setState({endDate})
+  }
+
+  handleGuests = (guests) => {
+    this.setState({guests})
+  }
+
+
   handleGetBookedDates = () => {
-
-    let id = '/1';
-    if (window.location.pathname !== '/') {
-      id = window.location.pathname;
-    }
-
-    
-    axios.get(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`)
+    //http://http://localhost:3004/dates${id}
+    //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}
+    axios.get(`http://localhost:3004/booking/dates${id}`)
     .then(result => {
+      
+      const days = [];
+
+      result.data.forEach((day) => {
+        days.push(new Date(day))
+      })
+
       this.setState({
-        bookedDates: result.data.bookedDates
+        days: days
       })
     })
     .catch(err => {
@@ -47,168 +66,80 @@ class App extends React.Component {
     }
 
     handleSubmitBooking = () =>{
-
-      let id = '/1';
-      if (window.location.pathname !== '/') {
-        id = window.location.pathname;
-      }
-    
       const startDate = moment(this.state.startDate).startOf('day')
       const endDate = moment(this.state.endDate).startOf('day')
-
-       axios.post(`http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}`, {
+      //http://http://localhost:3004/dates${id}
+      //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}
+       axios.post(`http://localhost:3004/booking/dates${id}`, {
           startDate: startDate,
           endDate: endDate,
-          adults: this.state.adults,
-          children: this.state.children,
-          infants: this.state.infants
+          guests: this.state.guests
         })
         .then(result => {
-  
           this.handleGetBookedDates()
-          
           this.setState({
-            startDate: new Date(),
-            endDate: new Date(),
-            message: result.data
+            successMessage: result.data.validDates
           })
-  
+
           setTimeout(() =>{
             this.setState({
-              message: ''
+              successMessage: ''
             })
           }, 3000)
-  
         })
         .catch(err => {
-          console.log(err)
+          this.setState({
+            errorMessage: err.response.data.invalidDates
+          })
+
+        setTimeout(() =>{
+          this.setState({
+            errorMessage: ''
+          })
+        }, 3000)
+
         })
      }
-
-     handleChangeStart = (startDate) => {
-
-      startDate = startDate || this.state.startDate;
-  
-      let endDate = this.state.endDate;
-  
-      if(moment(startDate).isAfter(endDate)){
-        endDate = startDate
-        this.setState({endDate})
-      }
-  
-      this.setState({startDate})
-    
-    };
-
-
-    handleChangeEnd = (endDate) => {
-      endDate = endDate || this.state.endDate;
-      const startDate = this.state.startDate
-      if(moment(startDate).isAfter(endDate)){
-        endDate = startDate
-      }
-      this.setState({endDate})
-  
-    }
-
-  
-
-    // Guest Logic
-    // Adults
-    increaseAdultCount = () => {
-      this.setState((prevState) => ({
-        adults: prevState.adults + 1
-      }))
-    }
-    
-    decreaseAdultCount = () => {
-      if(this.state.adults > 0){
-        this.setState((prevState) => ({
-          adults: prevState.adults - 1
-        }))
-      }
-    }
-  
-    // Children
-    increaseChildCount = () => {
-      this.setState((prevState) => ({
-        children: prevState.children + 1
-      }))
-    }
-  
-    decreaseChildCount = () => {
-      if(this.state.children > 0){
-        this.setState((prevState) => ({
-          children: prevState.children - 1
-        }))
-      }
-    }
-  
-    // Infants
-    increaseInfantCount = () => {
-      this.setState((prevState) => ({
-        infants: prevState.infants + 1
-      }))
-    }
-  
-    decreaseInfantCount = () => {
-      if(this.state.infants > 0){
-        this.setState((prevState) => ({
-          infants: prevState.infants - 1
-        }))
-      }
-    }
-  
 
     // Life Cycle Methods
     componentDidMount(){
       this.handleGetBookedDates()
     }
 
-    
-  
-
   render(){
+
+    let successModal = null;
+    
+    if(this.state.successMessage){
+
+      successModal = (
+        <div className="success-modal">
+          
+          <div className="success-message">{this.state.successMessage}</div>
+    
+        </div>)
+    } 
     
     return(
       <div>
       <StickyContainer className="sticky-wrapper">
-         
           <Sticky>
          { ({ style }) => (
         <div className="app-wrapper" style={style}>
-          
+
+          {successModal}
           <DateSelector
-          // Variables
-          startDate={this.state.startDate}
-          endDate={this.state.endDate}
-          bookedDates={this.state.bookedDates}
-          message={this.message}
-          // Methods
-          handleGetBookedDates={this.handleGetBookedDates}
-          handleChangeEnd={this.handleChangeEnd}
-          handleSubmitBooking={this.handleSubmitBooking}
-          handleChangeStart={this.handleChangeStart}
-          handleChangeEnd={this.handleChangeEnd}
+            handleStartDate={this.handleStartDate}
+            handleEndDate={this.handleEndDate}
+            bookedDates={this.state.days}
           />
 
-
-           <Guests 
-           // Variables
-           adults={this.state.adults}
-           children={this.state.children}
-           infants={this.state.infants}
-           // Methods
-           increaseAdultCount={this.increaseAdultCount}
-           decreaseAdultCount={this.decreaseAdultCount}
-           increaseChildCount={this.increaseChildCount}
-           decreaseChildCount={this.decreaseChildCount}
-           increaseInfantCount={this.increaseInfantCount}
-           decreaseInfantCount={this.decreaseInfantCount}
-           />
-       
+           <Guests
+           guests={this.guests}
+           handleGuests={this.handleGuests}
+          />
+          <p className="error-message">{this.state.errorMessage}</p>
           <input className="submitButton" type="submit" onClick={this.handleSubmitBooking} value="Request to Book"/>
-
         </div>
         )}
         </Sticky>

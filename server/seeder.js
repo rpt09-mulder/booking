@@ -1,45 +1,58 @@
 const faker = require('faker');
-const moment = require('moment');
-const mongoose = require('mongoose');
 const db = require('./database/db');
+const moment = require('moment')
 
-// Load Profile Model
-const BookedDates = require('./models/BookedDates');
+// Load Listings Model
+const Listing = require('./models/Listing');
+
 
 const seeder = () => {
 
-    // Droping existing sample data
-    BookedDates.deleteMany({}, () => {
-      
-      console.log('Removed Sample Data')
+  // Droping existing sample data
+  Listing.deleteMany({}, () => {
 
-      // Loop for each listing
-      for(let j = 1; j <= 100; j++){
 
-      let bookedDays = []
+    for(let j = 1; j <= 100; j++){
 
-      // Loop 
-      for(let i = 0; i < 50; i++){
-        let randomDate = faker.date.between('2018-12-01', '2019-06-01');
-        // let cleanDate = moment(randomDate).format('L')
-        bookedDays.push(randomDate)
-      };
+      let details = [];
 
-      const newBookedDates = new BookedDates({
+      for(let i = 1; i <= 50; i++){
+
+        let d = faker.date.between('2018-01-01', '2019-09-30');
+        const newD = moment(d).startOf('day')
+        
+        detail = {
+          date: newD,
+          guests: {
+            adults: faker.random.number({'min': 1, 'max': 3}),
+            children: faker.random.number({'min': 0, 'max': 3}),
+            infants: faker.random.number({'min': 0, 'max': 3}),
+          }
+        }
+        details.push(detail)
+      }
+
+      const newListing = new Listing({
+
         listing_id: j,
-        bookedDates: bookedDays,
-      });
-      
-      newBookedDates.save((err) => {
+
+        details: details
+      }) 
+
+     newListing.save((err) => {
         if(err){
           console.log(err)
         }
       })
-      
-    };
-    console.log('Sample data has been saved to DB')
-  })
-};
+    }
+ })
+}
 
 // Call Seeder func
 seeder();
+
+
+
+
+
+
