@@ -4,6 +4,7 @@ import Guests from './components/Guests';
 import Overview from './components/Overview'
 import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
+import faker from 'faker';
 import { StickyContainer, Sticky } from 'react-sticky';
 import { faStarHalf, faStar, faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 
@@ -161,10 +162,16 @@ class App extends React.Component {
         }))
       }
     }
+
+    handleCalculatePrice = () => {
+      const price = faker.commerce.price(50,100);
+      console.log(price)
+    }
   
 
     // Life Cycle Methods
     componentDidMount(){
+      this.handleCalculatePrice()
       this.handleGetBookedDates()
     }
 
