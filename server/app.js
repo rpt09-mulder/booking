@@ -5,7 +5,8 @@ const path = require('path')
 const db = require('./database/db');
 const cors = require('cors');
 const moment = require('moment');
-const morgan = require('morgan')
+const morgan = require('morgan');
+const _ = require('lodash')
 
 
 const app = express();
@@ -26,11 +27,11 @@ app.use(bodyParser.json());
 
 // Serving Static Files
 app.use(express.static(path.join(__dirname, '../client/public')));
-
 app.use('/:id', express.static(path.join(__dirname, '../client/public')));
 
-// Load the BookedDates Model
-const BookedDates = require('./models/BookedDates');
+
+// Load Listings Model
+const Listing = require('./models/Listing');
 
 
 // @route     GET api/dates/:id
@@ -38,12 +39,22 @@ const BookedDates = require('./models/BookedDates');
 // @access    Public
 app.get('/booking/dates/:id', (req, res) => {
 
-  BookedDates.findOne({listing_id: req.params.id})
+  Listing.findOne({listing_id: req.params.id})
     .then(listing => {
+
+      console.log(listing)
+
       if(listing === null){
         res.status(404).json({listingnotfound: 'No listing found'})
       }
-      res.json(listing)
+      // only sending back days booked
+      const days = [];
+
+      listing.details.forEach((detail) => {
+        days.push(detail.date)
+      })
+
+      res.json(days)
     })
  });
 
@@ -54,40 +65,72 @@ app.get('/booking/dates/:id', (req, res) => {
 // @access    Public
 app.post('/booking/dates/:id', (req, res) => {
 
+    console.log('posting')
+
     let startDate = moment(req.body.startDate);
     let endDate = moment(req.body.endDate);
-  
+    let guests = req.body.guests
+
     const days = [];
     let day = startDate;
 
-    while(day <= endDate){
-      days.push(day.toDate());
-      day = day.clone().add(1, 'd');
-    }
+      Listing.findOne({listing_id: req.params.id})
+        .then((listing) => {
+            while(day <= endDate){
 
-    console.log(days);
-    BookedDates.findOne({listing_id: req.params.id})
-      .then(listing => {  
+            if(_.find(listing.details, {'date': day.toDate()})){
 
-        days.forEach(day => {
+              res.status(400).send({invalidDates: 'Unfortunately this date range is unavailable'})
+              return;
+            } else {
 
-          listing.bookedDates.push(day)
+              listing.details.push({
+                date: day.toDate(),
+                guests: guests
+              })
 
-        })
+            listing.save().then(() =>{
+               res.status(201).send({validDates: 'Congrats, your dates have been booked!'})
+              })
+            }
+            day = day.clone().add(1, 'd');
+          }
+      });
 
-        listing.save().then(() =>{
-          res.status(201).json("Your dates have been booked")
-        })
-        
-    })
-
-  
-
-
-});
-
+  });
 
 module.exports = app
 
 
 
+
+
+    // while(day <= endDate){
+    //   // create an object for each day
+    //   const bookedDay = {};
+    //   // transform moment object to js date object and add to bookedDay object
+    //   bookedDay.date = day.toDate();
+    //   // add guest to each day that is beeing booked
+    //   bookedDay.guests = guests;
+    //   // push booked day into day array
+    //   days.push(bookedDay)
+    //   // add 1 to start date to reach end date and set 
+    //    day = day.clone().add(1, 'd');
+    // }
+
+    // BookedDates.findOne({listing_id: req.params.id})
+    //   .then(listing => {  
+
+    //     console.log(listing)
+        
+        // days.forEach(day => {
+
+        //   if(day === listing.bookedDates)
+        //   console.log(day)
+        //   listing.bookedDates.push(day)
+        // })
+
+        // listing.save().then(() =>{
+        //   res.status(201).json("Your dates have been booked")
+        // })
+    // })

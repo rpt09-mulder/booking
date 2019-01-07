@@ -7,61 +7,96 @@ const moment = require('moment')
 
 import "react-datepicker/dist/react-datepicker.css";
 
-const DateSelector = (props) => {
+class DateSelector extends React.Component{
 
-   const addMonths = (today, monthsToAdd) => {
+    state={
+      startDate: new Date(),
+      endDate: new Date(),
+    }
+
+   addMonths = (today, monthsToAdd) => {
 
           const maxDate = moment(today)
 
           return maxDate.add(monthsToAdd, 'months')._d
           }
 
-    const modal = (
+  modal = (
       <div className="booking-modal">
         <h3>Your Dates Have Been Booked!</h3>
       </div>
     )
+
+    updateParentState = () => {
+      this.props.handleEndDate(this.state.endDate)
+      this.props.handleStartDate(this.state.startDate)
+    }
     
+    
+    handleChangeStart = (startDate) => {
+      startDate = startDate || this.state.startDate;
+      let endDate = this.state.endDate;
+      if(moment(startDate).isAfter(endDate)){
+        endDate = startDate
+        this.setState({endDate}, this.updateParentState)
+      }
+      this.setState({startDate}, this.updateParentState)
+    };
 
 
+    handleChangeEnd = (endDate) => {
+      endDate = endDate || this.state.endDate;
+      const startDate = this.state.startDate
+      if(moment(startDate).isAfter(endDate)){
+        endDate = startDate
+      }
+      this.setState({endDate}, this.updateParentState)
+    }
+
+    componentWillReceiveProps(){
+     
+    }
+ 
+
+  render(){
+    
     return(
     
       <div>
       <div className="date-picker-wrapper">
       <p>Check In</p>  
       <DatePicker
-          selected={props.startDate}
+          selected={this.state.startDate}
           selectsStart
-          excludeDates={props.bookedDates}
+          excludeDates={this.props.bookedDates}
           minDate={new Date()}
-          maxDate={addMonths(new Date(), 5)}
-          startDate={props.startDate}
-          endDate={props.endDate}
-          onChange={props.handleChangeStart}
+          maxDate={this.addMonths(new Date(), 5)}
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
+          onChange={this.handleChangeStart}
       />
       </div>
 
-      <div class="date-picker-arrow">
+      <div className="date-picker-arrow">
       <FontAwesomeIcon icon="arrow-right" />
       </div>  
 
       <div className="date-picker-wrapper">
       <p>Check Out</p>    
       <DatePicker
-          selected={props.endDate}
+          selected={this.state.endDate}
           selectsEnd
-          excludeDates={props.bookedDates}
+          excludeDates={this.props.bookedDates}
           minDate={new Date()}
-          maxDate={addMonths(new Date(), 5)}
-          startDate={props.startDate}
-          endDate={props.endDate}
-          onChange={props.handleChangeEnd}
+          maxDate={this.addMonths(new Date(), 5)}
+          startDate={this.state.startDate}
+          endDate={this.state.endDate}
+          onChange={this.handleChangeEnd}
       />
       </div>
       </div>
     );
-
-
+  }
 }
 
 export default DateSelector;
