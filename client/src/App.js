@@ -5,13 +5,12 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
 import faker from 'faker';
 import { StickyContainer, Sticky } from 'react-sticky';
-import { faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
+import { faStarHalf, faStar, faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
+const moment = require('moment')
 
 import './App.css'
 
-const moment = require('moment')
-
-library.add(faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
+library.add(faStarHalf, faStar, faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
 
 
 let id = '/1';
