@@ -3,14 +3,16 @@ import DateSelector from './components/DateSelector';
 import Guests from './components/Guests';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
+import faker from 'faker';
+import moment from 'moment'
 import { StickyContainer, Sticky } from 'react-sticky';
-import { faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
+import { faStarHalf, faStar, faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
+
+
 
 import './App.css'
 
-const moment = require('moment')
-
-library.add(faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
+library.add(faStarHalf, faStar, faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
 
 
 let id = '/1';
@@ -92,11 +94,11 @@ class App extends React.Component {
             errorMessage: err.response.data.invalidDates
           })
 
-        setTimeout(() =>{
-          this.setState({
-            errorMessage: ''
-          })
-        }, 3000)
+          setTimeout(() =>{
+            this.setState({
+              errorMessage: ''
+            })
+          }, 3000)
 
         })
      }
