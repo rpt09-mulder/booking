@@ -13,11 +13,14 @@ class Guests extends React.Component {
 
 
 updateParentState = () => {
-  const guests = {}
+  const guests = Object.assign(this.state, {})
+
+  console.log(guests)
   
-  guests.adults = this.state.adults;
-  guests.children =  this.state.children,
-  guests.infants = this.state.infants
+  // guests.adults = this.state.adults;
+  // guests.children =  this.state.children,
+  // guests.infants = this.state.infants
+
   this.props.handleGuests(guests)
 }
   
