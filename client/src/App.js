@@ -4,9 +4,11 @@ import Guests from './components/Guests';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
 import faker from 'faker';
+import moment from 'moment'
 import { StickyContainer, Sticky } from 'react-sticky';
 import { faStarHalf, faStar, faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
-const moment = require('moment')
+
+
 
 import './App.css'
 
@@ -92,18 +94,17 @@ class App extends React.Component {
             errorMessage: err.response.data.invalidDates
           })
 
-        setTimeout(() =>{
-          this.setState({
-            errorMessage: ''
-          })
-        }, 3000)
+          setTimeout(() =>{
+            this.setState({
+              errorMessage: ''
+            })
+          }, 3000)
 
         })
      }
 
     // Life Cycle Methods
     componentDidMount(){
-      this.handleCalculatePrice()
       this.handleGetBookedDates()
     }
 
