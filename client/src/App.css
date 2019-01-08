@@ -48,7 +48,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.829);
+  background: rgba(255, 255, 255, 0.904);
   z-index: 10000;
   top: 50%;
   transform: translateY(-50%);
@@ -61,7 +61,7 @@
 .success-message{
   font-size: 20px;
   font-weight: bold;
-  color: rgb(38, 216, 97);
+  color: #028489;
   text-align: center;
   line-height: 30px;
 }
