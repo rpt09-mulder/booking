@@ -4,7 +4,8 @@ import Guests from './components/Guests';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
 import faker from 'faker';
-import moment from 'moment'
+import moment from 'moment';
+import Overview from './components/Overview'
 import { StickyContainer, Sticky } from 'react-sticky';
 import { faStarHalf, faStar, faArrowRight, faIgloo, faPlusCircle, faMinusCircle} from '@fortawesome/free-solid-svg-icons';
 
@@ -27,6 +28,7 @@ class App extends React.Component {
     endDate: '',
     guests: [],
     days: [],
+    price: null,
 
     successMessage: null,
     errorMessage: '',
@@ -47,19 +49,22 @@ class App extends React.Component {
 
 
   handleGetBookedDates = () => {
-    //http://http://localhost:3004/dates${id}
-    //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}
-    axios.get(`http://localhost:3004/booking/dates${id}`)
+    //http://http://localhost:3004${id}
+    //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking${id}
+    axios.get(`http://localhost:3004/booking${id}`)
     .then(result => {
       
       const days = [];
 
-      result.data.forEach((day) => {
+      console.log(result)
+
+      result.data.days.forEach((day) => {
         days.push(new Date(day))
       })
-
+      
       this.setState({
-        days: days
+        days: days,
+        price: result.data.price
       })
     })
     .catch(err => {
@@ -70,9 +75,9 @@ class App extends React.Component {
     handleSubmitBooking = () =>{
       const startDate = moment(this.state.startDate).startOf('day')
       const endDate = moment(this.state.endDate).startOf('day')
-      //http://http://localhost:3004/dates${id}
-      //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking/dates${id}
-       axios.post(`http://localhost:3004/booking/dates${id}`, {
+      //http://http://localhost:3004${id}
+      //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking${id}
+       axios.post(`http://localhost:3004/booking${id}`, {
           startDate: startDate,
           endDate: endDate,
           guests: this.state.guests
@@ -130,6 +135,7 @@ class App extends React.Component {
         <div className="app-wrapper" style={style}>
 
           {successModal}
+          <Overview price={this.state.price}/>
           <DateSelector
             handleStartDate={this.handleStartDate}
             handleEndDate={this.handleEndDate}

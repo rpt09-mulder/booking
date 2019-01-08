@@ -37,24 +37,27 @@ const Listing = require('./models/Listing');
 // @route     GET api/dates/:id
 // @desc      Gets all booked dates for a listing
 // @access    Public
-app.get('/booking/dates/:id', (req, res) => {
+app.get('/booking/:id', (req, res) => {
 
   Listing.findOne({listing_id: req.params.id})
     .then(listing => {
 
-      console.log(listing)
-
       if(listing === null){
         res.status(404).json({listingnotfound: 'No listing found'})
       }
+
+      let currentListing = {};
+
+      // Send back price of listing
+      currentListing.price = listing.listing_price
       // only sending back days booked
-      const days = [];
+      currentListing.days = [];
 
       listing.details.forEach((detail) => {
-        days.push(detail.date)
+        currentListing.days.push(detail.date)
       })
 
-      res.json(days)
+      res.json(currentListing)
     })
  });
 
@@ -63,9 +66,7 @@ app.get('/booking/dates/:id', (req, res) => {
 // @route     POST api/dates/:id
 // @desc      Books date(s) to the database
 // @access    Public
-app.post('/booking/dates/:id', (req, res) => {
-
-    console.log('posting')
+app.post('/booking/:id', (req, res) => {
 
     let startDate = moment(req.body.startDate);
     let endDate = moment(req.body.endDate);

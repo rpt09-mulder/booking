@@ -3,6 +3,8 @@ import Stars from './Stars';
 import Price from './Price';
 import axios from 'axios';
 
+import './Overview.css'
+
 
 
 class Reviews extends Component {
@@ -27,8 +29,8 @@ class Reviews extends Component {
     const { reviewsAverage, reviewsCount } = this.state;
 
     return (
-      <div className="reviews-wrapper">
-          <Price />
+      <div className="overview-wrapper">
+          <Price price={this.props.price}/>
           <Stars average={reviewsAverage} count={reviewsCount}/>
       </div>
     )
