@@ -99,62 +99,8 @@ class App extends React.Component {
           })
         }, 3000)
 
-<<<<<<< HEAD
         })
      }
-=======
-    // Guest Logic
-    // Adults
-    increaseAdultCount = () => {
-      this.setState((prevState) => ({
-        adults: prevState.adults + 1
-      }))
-    }
-    
-    decreaseAdultCount = () => {
-      if(this.state.adults > 0){
-        this.setState((prevState) => ({
-          adults: prevState.adults - 1
-        }))
-      }
-    }
-  
-    // Children
-    increaseChildCount = () => {
-      this.setState((prevState) => ({
-        children: prevState.children + 1
-      }))
-    }
-  
-    decreaseChildCount = () => {
-      if(this.state.children > 0){
-        this.setState((prevState) => ({
-          children: prevState.children - 1
-        }))
-      }
-    }
-  
-    // Infants
-    increaseInfantCount = () => {
-      this.setState((prevState) => ({
-        infants: prevState.infants + 1
-      }))
-    }
-  
-    decreaseInfantCount = () => {
-      if(this.state.infants > 0){
-        this.setState((prevState) => ({
-          infants: prevState.infants - 1
-        }))
-      }
-    }
-
-    handleCalculatePrice = () => {
-      const price = faker.commerce.price(50,100);
-      console.log(price)
-    }
-  
->>>>>>> WIP added price calculator
 
     // Life Cycle Methods
     componentDidMount(){
