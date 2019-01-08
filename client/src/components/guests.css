@@ -21,6 +21,7 @@
   border: 1px solid rgb(211, 211, 211);
   margin: 15px 0;
   border-radius: 3px;
+  
 }
 
 .guests-display{
@@ -43,6 +44,7 @@
   box-sizing: border-box;
   padding: 5px 15px;
   width: 100%;
+  border-top: 2px solid #028489;
 }
 
 .guest-icon{
