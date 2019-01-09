@@ -17,7 +17,7 @@ import './App.css'
 
 library.add(faStarHalf, faStar, faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
 
-let id = '/1';
+let id = '/45';
 if (window.location.pathname !== '/') {
   id = window.location.pathname;
 }
