@@ -22,7 +22,7 @@ if (window.location.pathname !== '/') {
   id = window.location.pathname;
 }
 
-let URL = 'http://booking-dev2.us-west-1.elasticbeanstalk.com/booking';
+let URL = 'http://booking.jtaqrb8zaa.us-west-2.elasticbeanstalk.com//booking';
 
 if(process.env.NODE_ENV === 'development'){
    URL = 'http://localhost:3004/booking'
