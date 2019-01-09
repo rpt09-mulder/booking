@@ -11,15 +11,23 @@ import { faStarHalf, faStar, faArrowRight, faIgloo, faPlusCircle, faMinusCircle}
 
 
 
+
+
 import './App.css'
 
 library.add(faStarHalf, faStar, faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
-
 
 let id = '/1';
 if (window.location.pathname !== '/') {
   id = window.location.pathname;
 }
+
+let URL = 'http://booking-dev2.us-west-1.elasticbeanstalk.com/booking';
+
+if(process.env.NODE_ENV === 'development'){
+   URL = 'http://localhost:3004/booking'
+} 
+
 
 class App extends React.Component {
 
@@ -35,6 +43,12 @@ class App extends React.Component {
   }
 
 
+  // Life Cycle Methods
+  componentDidMount(){
+    this.handleGetBookedDates()
+  }
+  
+
   handleStartDate = (startDate) =>{
     this.setState({startDate})
   }
@@ -49,14 +63,12 @@ class App extends React.Component {
 
 
   handleGetBookedDates = () => {
-    //http://http://localhost:3004${id}
-    //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking${id}
-    axios.get(`http://localhost:3004/booking${id}`)
+
+    console.log(URL)
+    axios.get(URL + `${id}`)
     .then(result => {
       
       const days = [];
-
-      console.log(result)
 
       result.data.days.forEach((day) => {
         days.push(new Date(day))
@@ -75,9 +87,7 @@ class App extends React.Component {
     handleSubmitBooking = () =>{
       const startDate = moment(this.state.startDate).startOf('day')
       const endDate = moment(this.state.endDate).startOf('day')
-      //http://http://localhost:3004${id}
-      //http://booking-dev2.us-west-1.elasticbeanstalk.com/booking${id}
-       axios.post(`http://localhost:3004/booking${id}`, {
+       axios.post(URL + `${id}`, {
           startDate: startDate,
           endDate: endDate,
           guests: this.state.guests
@@ -108,10 +118,6 @@ class App extends React.Component {
         })
      }
 
-    // Life Cycle Methods
-    componentDidMount(){
-      this.handleGetBookedDates()
-    }
 
   render(){
 
