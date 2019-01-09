@@ -107,7 +107,7 @@ decreaseInfantCount = () => {
                     <div className="guest-card-choice">
                         <h3>Adults</h3>
                         <div className="guest-icon" onClick={this.increaseAdultCount}>
-                          <FontAwesomeIcon icon="plus-circle" />
+                          <span className="icon-wrapper"><FontAwesomeIcon icon="plus-circle" /></span>
                         </div>
 
                         <div className="guest-card-number">

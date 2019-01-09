@@ -63,3 +63,22 @@
   display: inline-block;
   padding: 0 15px;
 }
+.react-datepicker__day--selected,
+.react-datepicker__day--in-range {
+  background-color: #388288 !important;
+  border-radius: 0.1rem !important;
+}
+
+.react-datepicker{
+  border-radius: 0.1rem !important;
+  border: 1px solid rgb(214, 214, 214) !important
+}
+
+.react-datepicker__header{
+  background-color: white !important;
+  border-bottom: 1px solid rgb(214, 214, 214) !important
+}
+
+.react-datepicker__triangle{
+  border-bottom-color: white !important;
+}

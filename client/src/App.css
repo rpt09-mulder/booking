@@ -1,7 +1,7 @@
 .app-wrapper{
   display: inline-block;
   box-sizing: border-box;
-  padding: 2em;
+  padding: 1em 2em 2em 2em;
   border: 1px solid rgb(211, 211, 211);
   width: 378px !important;
   background: white;
@@ -9,7 +9,8 @@
   left: inherit !important;
   right: 100px !important;
   margin-top: 50px;
-  border-radius: 3px
+  border-radius: 3px;
+  color: #484848;
 }
 
 .sticky-wrapper{
@@ -36,8 +37,8 @@
 .error-message{
   padding: 10px;
   font-size: 13px;
-  color: red;
-  top: 220px;
+  color: rgb(255, 79, 79);
+  top: 285px;
   left: 60px;
   position: absolute;
 }
@@ -47,7 +48,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(255, 255, 255, 0.829);
+  background: rgba(255, 255, 255, 0.904);
   z-index: 10000;
   top: 50%;
   transform: translateY(-50%);
@@ -60,7 +61,7 @@
 .success-message{
   font-size: 20px;
   font-weight: bold;
-  color: rgb(38, 216, 97);
+  color: #028489;
   text-align: center;
   line-height: 30px;
 }

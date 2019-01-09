@@ -36,7 +36,9 @@ const seeder = () => {
 
         listing_id: j,
 
-        details: details
+        details: details,
+
+        listing_price: faker.commerce.price(50, 100)
       }) 
 
      newListing.save((err) => {
