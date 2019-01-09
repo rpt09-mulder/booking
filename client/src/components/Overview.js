@@ -15,7 +15,7 @@ class Reviews extends Component {
   }
 
   componentDidMount(){
-    axios.get('http://firebnb-reviews.8di9c2yryn.us-east-1.elasticbeanstalk.com/ratings/26')
+    axios.get(`http://firebnb-reviews.8di9c2yryn.us-east-1.elasticbeanstalk.com/ratings${this.props.id}`)
       .then((result) => {
         this.setState({
           reviewsCount: result.data.numReviews,
