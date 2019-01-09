@@ -7,7 +7,8 @@
 .guest-card-choice h3{
   display: inline-block;
   margin-right: 10px;
-  flex: 2
+  flex: 2;
+  font-size: 17px;
 }
 
 .guest-increaser-wrapper{
@@ -20,6 +21,7 @@
   border: 1px solid rgb(211, 211, 211);
   margin: 15px 0;
   border-radius: 3px;
+  
 }
 
 .guests-display{
@@ -42,25 +44,34 @@
   box-sizing: border-box;
   padding: 5px 15px;
   width: 100%;
+  border-top: 2px solid #028489;
 }
 
 .guest-icon{
   display: inline-block;
   align-self: center;
+  font-size: 25px;
+  color: rgb(151, 151, 151);
+}
+
+.guest-icon:active{
+  filter: drop-shadow(0px 0px 3px #028489);
+  position: relative;
 }
 
 .guest-icon:hover {
   color: #028489;
   cursor: pointer;
+  
 }
 
 
 .guest-card-number{
   display: inline-block;
   padding: 10px 14px;
-  border: 1px solid rgb(196, 196, 196);
   margin: 10px;
-  border-radius: 100px;
+  width: 30px;
+  text-align: center;
 }
 
 .guest-card-outer-wrapper p {

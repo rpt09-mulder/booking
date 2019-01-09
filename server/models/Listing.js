@@ -22,8 +22,11 @@ const ListingSchema = new Schema({
       type: Number,
       required: true
     },
-    details: [DetailsSchema]
-
+    details: [DetailsSchema],
+    listing_price: {
+      type: Number,
+      required: true
+    }
 });
 
 

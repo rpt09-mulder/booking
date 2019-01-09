@@ -1,0 +1,15 @@
+.price-wrapper{
+  margin-bottom: 2px;
+}
+
+
+.listing-price{
+  font-size: 30px;
+  font-weight: bold;
+  color: #484848;
+  
+}
+
+.per-night{
+  font-size: 13px;
+}

@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import './Price.css'
 
-const Price = () => {
+const Price = ({price}) => {
   return (
-    <div>
-      Price
+    <div className="price-wrapper">
+      <span className="listing-price">${price}</span><span className="per-night">per night</span> 
     </div>
   )
 }
