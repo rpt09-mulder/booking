@@ -132,6 +132,7 @@ class App extends React.Component {
     
         </div>)
     } 
+
     
     return(
       <div>
@@ -141,7 +142,7 @@ class App extends React.Component {
         <div className="app-wrapper" style={style}>
 
           {successModal}
-          <Overview price={this.state.price}/>
+          <Overview price={this.state.price} id={id}/>
           <DateSelector
             handleStartDate={this.handleStartDate}
             handleEndDate={this.handleEndDate}
