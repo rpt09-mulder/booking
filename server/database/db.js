@@ -3,7 +3,7 @@ const keys = require('../config/keys')
 
 // Loading DB
 
-mongoose.connect(keys.mongodbUri, { useNewUrlParser: true });
+mongoose.connect(process.env.mongodbUri, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 

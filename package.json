@@ -8,8 +8,8 @@
     "node": ">=10.13.0"
   },
   "scripts": {
-    "start-dev": "nodemon server/server.js",
-    "start": "node server/server.js",
+    "start-dev": "NODE_ENV=development nodemon server/server.js",
+    "start": "NODE_ENV=production node server/server.js ",
     "seeder": "node server/seeder.js",
     "test": "jest --detectOpenHandles"
   },
