@@ -1,10 +1,9 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const keys = require('../config/keys')
 
 // Loading DB
 
-const mongodbUri = 'mongodb://insivika:insivika123@ds139675.mlab.com:39675/firebnb-booking'
-
-mongoose.connect(mongodbUri, { useNewUrlParser: true });
+mongoose.connect(keys.mongodbUri, { useNewUrlParser: true });
 
 const db = mongoose.connection;
 
