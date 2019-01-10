@@ -17,7 +17,7 @@ import './App.css'
 
 library.add(faStarHalf, faStar, faIgloo, faPlusCircle, faMinusCircle, faArrowRight)
 
-let id = '/45';
+let id = '/1';
 if (window.location.pathname !== '/') {
   id = window.location.pathname;
 }
@@ -64,7 +64,6 @@ class App extends React.Component {
 
   handleGetBookedDates = () => {
 
-    console.log(URL)
     axios.get(URL + `${id}`)
     .then(result => {
       
