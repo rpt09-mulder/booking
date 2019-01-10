@@ -8,13 +8,13 @@ const Stars = ({average, count}) => {
 
   const starArray = [];
 
-  let i = 0;
+  let i = 1;
 
   for(; i < average; i++){
     starArray.push(<FontAwesomeIcon key={i} className="star-icon" icon="star"/>)
   }
   if(half){
-    starArray.push(<FontAwesomeIcon key={i++} className="star-icon" icon="half-star"/>)
+    starArray.push(<FontAwesomeIcon key={i++} className="star-icon" icon="star-half"/>)
   }
 
   return (
