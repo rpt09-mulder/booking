@@ -87,6 +87,7 @@ class App extends React.Component {
     handleSubmitBooking = () =>{
       const startDate = moment(this.state.startDate).startOf('day')
       const endDate = moment(this.state.endDate).startOf('day')
+
        axios.post(URL + `${id}`, {
           startDate: startDate,
           endDate: endDate,
@@ -106,7 +107,7 @@ class App extends React.Component {
         })
         .catch(err => {
           this.setState({
-            errorMessage: err.response.data.invalidDates
+            errorMessage: err.response.data.invalid
           })
 
           setTimeout(() =>{

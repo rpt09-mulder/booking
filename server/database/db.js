@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 
 // Loading DB
-//'mongodb://localhost/fireBnb-booking'
 
 const mongodbUri = 'mongodb://insivika:insivika123@ds139675.mlab.com:39675/firebnb-booking'
 
