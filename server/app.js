@@ -34,7 +34,7 @@ app.use('/:id', express.static(path.join(__dirname, '../client/public')));
 const Listing = require('./models/Listing');
 
 
-// @route     GET api/dates/:id
+// @route     GET api/:id
 // @desc      Gets all booked dates for a listing
 // @access    Public
 app.get('/booking/:id', (req, res) => {
@@ -68,40 +68,77 @@ app.get('/booking/:id', (req, res) => {
 // @access    Public
 app.post('/booking/:id', (req, res) => {
 
-    let startDate = moment(req.body.startDate);
-    let endDate = moment(req.body.endDate);
     let guests = req.body.guests
 
-    const days = [];
+    let startDate = moment(req.body.startDate);
+    let endDate = moment(req.body.endDate);
+    
+    if(guests.adults < 1){
+      res.status(400).send({invalid: 'At least one adult must be in your party'});
+      return;
+    }
+
+    Listing.findOne({listing_id: req.params.id})
+      .then((listing) => {
+
+         // Check if for any conflicting dates and return 400 if a rogue date is identified
+         if(checkForConflictingDates(listing, startDate, endDate)){
+           res.status(400).send({invalid: 'Unfortunately this date range is unavailable'})
+           return;
+         } else {
+
+          // Book dates if no rogue date has been identified
+          bookDates(listing, startDate, endDate, guests)
+            .then(() => {
+              listing.save().then(() =>{
+                res.status(201).send({validDates: 'Congrats, your dates have been booked!'})
+              });
+            })
+         }
+      });
+  });
+
+
+
+  const checkForConflictingDates = (listing, startDate, endDate) => {
+
     let day = startDate;
 
-      Listing.findOne({listing_id: req.params.id})
-        .then((listing) => {
-            while(day <= endDate){
+    while(day <= endDate){
+      if(_.find(listing.details, {'date': day.toDate()})){
+        return true;
+      } 
+     day = day.clone().add(1, 'd');
+    }
+  }
 
-            if(_.find(listing.details, {'date': day.toDate()})){
 
-              res.status(400).send({invalidDates: 'Unfortunately this date range is unavailable'})
-              return;
-            } else {
+  const bookDates = (listing, startDate, endDate, guests) => {
+    return new Promise(function(resolve, reject){
+      
+      let day = startDate;
 
-              listing.details.push({
-                date: day.toDate(),
-                guests: guests
-              })
+      while(day <= endDate){
+      
+      listing.details.push({
+        date: day.toDate(),
+        guests: guests
+      })
+      
+      day = day.clone().add(1, 'd');
+      } 
+      resolve()
 
-            listing.save().then(() =>{
-               res.status(201).send({validDates: 'Congrats, your dates have been booked!'})
-              })
-            }
-            day = day.clone().add(1, 'd');
-          }
-      });
+      reject(Error('Something broke'))
+      
+    })
+  }
 
-  });
 
 module.exports = app
 
+
+ 
 
 
 
