@@ -11,8 +11,8 @@ Booking Component component is found on the AirBnb listing page and allows the u
 1. [Requirements](#Requirements)
 1. [Usage](#Usage)
 1. [Back End](#Back-End)
-   1. [Business Logic](#Business-Logic)
    1. [Data](#Data)
+   1. [Business Logic](#Business-Logic)
    1. [Testing](#Testing)
 1. [Client](#Client)
    1. [Component Architecture](#Component-Architecture)
@@ -28,7 +28,7 @@ The rooms, picture gallery and reviews components have been tackled by my teamma
   - https://github.com/rpt09-mulder/gallery
   - https://github.com/rpt09-mulder/reviews
   
- Refference the screen shot below to view all components put together:
+ Refference the screenshot below to view all components put together:
  
  
   <img width="1440" alt="screen shot 2019-01-10 at 10 32 13 pm" src="https://user-images.githubusercontent.com/33808429/51017110-a2c15d80-1527-11e9-9520-e0a8f2eebc9c.png">
@@ -77,7 +77,9 @@ npm start
 
 ## Back End
 
-### Data Seed Script 
+### Data
+
+### Seeding Script
 
 The seeding script will populate the database with 100 records of mockdata. 
 
