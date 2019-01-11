@@ -8,13 +8,13 @@ this component will allow the user to see available dates for a listing and make
 
 
 ## Table of Contents
-1. [Related Projects](#Related Projects)
+1. [Related-Projects](#Related-Projects)
 1. [Usage](#Usage)
 1. [Requirements](#Requirements)
 1. [Development](#Development)
 
 
-## Related Projects
+## Related-Projects
 
 The rooms, picture gallery and reviews components have been tackled by my teammates, you'll be able to learn more about them by visiting their respective repos.
 
