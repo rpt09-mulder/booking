@@ -7,20 +7,20 @@ Booking Component component is found on the AirBnb listing page and allows the u
 
 
 ## Table of Contents
-1. [Related-Projects](#Related-Projects)
+1. [Related Projects](#Related-Projects)
 1. [Requirements](#Requirements)
 1. [Usage](#Usage)
 1. [Back End](#Back-End)
-   1. [Business-Logic](#Business-Logic)
+   1. [Business Logic](#Business-Logic)
    1. [Data](#Data)
    1. [Testing](#Testing)
 1. [Client](#Client)
-   1. [Component-Architecture](#Component-Architecture)
-   1. [User-Interaction](#User-Interaction)
+   1. [Component Architecture](#Component-Architecture)
+   1. [User Interaction](#User-Interaction)
    1. [Styling](#Styling)
 
 
-## Related-Projects
+## Related Projects
 
 The rooms, picture gallery and reviews components have been tackled by my teammates, you'll be able to learn more about them by visiting their respective repos.
 
@@ -137,7 +137,9 @@ This route will fetch and return booked dates based on a listing id query. It wi
 
 ## Client
 
-#### App.js
+### Component Architecture
+
+   #### App.js
 This is the main component that holds most of the client side logic. I handles the get request upon mounting and receives all relevant listing data for its sub components.
 
 #### DateSelector.js
@@ -153,4 +155,11 @@ The guest components allows the user to select the amount of guests he/she would
 The Price component receives the listing price via its props from the App component and reflects it to the user.
 
 #### Stars.js
+
+
+### User Interaction
+
+### Styling
+
+
 
