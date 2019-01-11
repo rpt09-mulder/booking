@@ -28,7 +28,7 @@ The rooms, picture gallery and reviews components have been tackled by my teamma
   - https://github.com/rpt09-mulder/gallery
   - https://github.com/rpt09-mulder/reviews
   
- Refference the screenshot below to view all components put together:
+ All components deployed and rendering:
   
   ![project-airbnb](https://user-images.githubusercontent.com/33808429/51042522-6581bd80-1571-11e9-877d-5fbbbab14bda.jpg)
 
