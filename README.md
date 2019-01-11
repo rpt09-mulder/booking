@@ -135,15 +135,16 @@ Each mock listing will have a **listing ID**, a **price** and a **details array*
 }
 ```
 
-
-
-
 ## Business-Logic
 
 ### GET route
-This route will fetch and return booked dates based on a listing id query. It will also return an informative error message to the client if no records have been found.
+The GET route will attempt fetch and return booked dates and the listing price based on a query usting a listing id. It first performs the query using the Mongoose *findOne* helper function. If no record has been found, it will return an informative error message to the client. If it finds the requested listing, it will create a **currentListing** object with an empty **days** array and a **price** as its keys. It then attached the price and loops through the details objects of the listing to push the dates in to the days array. Once all dates have been included the currentListing object will be send to the client. 
 
 ### POST route
+The POST route is responsible for booking a received date range and is a bit more tricky as it is responsible to handle quite of bit of logic & data shaping. I've listed below the chronological flow of events once in attempt to explain what's going on:
+
+1. The route receives 1) a listing ID as query paramter 2) the # of guests 3) a booking request start date and 4) a booking request end date.
+
 
 ### Challenges/Learning experiences
 
@@ -153,7 +154,7 @@ This route will fetch and return booked dates based on a listing id query. It wi
 
 ### Component Architecture
 
-   #### App.js
+#### App.js
 This is the main component that holds most of the client side logic. I handles the get request upon mounting and receives all relevant listing data for its sub components.
 
 #### DateSelector.js
