@@ -8,7 +8,7 @@ this component will allow the user to see available dates for a listing and make
 
 
 ## Table of Contents
-1. [Related Projects](#Related Projects)
+1. [Related Projects](#Projects)
 1. [Usage](#Usage)
 1. [Requirements](#Requirements)
 1. [Development](#Development)
