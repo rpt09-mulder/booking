@@ -2,13 +2,22 @@
 Booking Component for the FireBnb Web Application
 
 > Project description
-this component will allow the user to see available dates for a listing and make a booking request. 
+this component will allow the user to see available dates for a listing and make a booking request for a specific date range.
+
+<img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
 
 ## Related Projects
+
+The rooms, picture gallery and reviews components have been tackled by my teammates, you'll be able to learn more about them by visiting their respective repos.
 
   - https://github.com/rpt09-mulder/rooms
   - https://github.com/rpt09-mulder/gallery
   - https://github.com/rpt09-mulder/reviews
+  
+ Refference the screen shot below to view all components put together:
+ 
+ 
+  
 
 
 ## Table of Contents
