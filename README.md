@@ -13,6 +13,7 @@ Booking Component component is found on the AirBnb listing page and allows the u
 1. [Back End](#Back-End)
    1. [Data](#Data)
    1. [Business Logic](#Business-Logic)
+   1. [Challenges](#Challenges)
    1. [Testing](#Testing)
 1. [Client](#Client)
    1. [Component Architecture](#Component-Architecture)
@@ -154,7 +155,7 @@ The POST route is responsible for booking a received date range and is a bit mor
 1. It is here where meet our first challenge, we have to first validate that the request does not contain any dates that have already been booked. We do this via the helper function *checkForConflictingDates* from our *controller* module. The *checkForConflictingDates* receives the found listing, the start date and the end date as a parameter. It then loops through each details object and applies the underscore *_.find* method to check for any matching dates. If it a matching date is found it will return true and kick us out of the loop. Back within our POST route, if checkForConflictingDate returns true, we respond to the client with a status code 400 and an informative error message that the selected date range is not available.
 1. If no conflicting dates have been found, we use our second helper method *bookDates* (also on the *controller* module) to book our dates. The *bookDates* method loops over each date and within the range to create an object with the  date key and 
 
-### Challenges/Learning experiences
+### Challenges
 
 
 
