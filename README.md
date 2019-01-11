@@ -17,9 +17,8 @@ this component will allow the user to see available dates for a listing and make
 1. [Requirements](#requirements)
 1. [Development](#development)
 
-## Usage
 
-> Simply fire up the start script and connect to a db.
+
 
 ## Requirements
 
@@ -39,9 +38,104 @@ npm install -g webpack
 npm install
 ```
 
-##Seed Script 
-The seeding script will populate the database with 100 records of mockdata which includes 1. 50 random dates between 12/01/2018 and 06/01/2019 (as an array with each string record formated as month/day/year) 2. a listing ID 3. an automatically document id. This should hopfully create enough dates that when to provide the user with a realistic user experience. The script is run from the root level via 'nmp run seeder'. 
+## Usage
 
-##Get dates route
+To launch the server in a development environment:
+
+```sh
+npm run start-dev
+```
+
+To launch the client in a development environment, run the following from the 'client' directory:
+
+```sh
+npm run start-dev
+```
+
+
+To launch the server in a production environment:
+
+```sh
+npm start
+```
+
+To launch the client in a production environment, run the following from the 'client' directory:
+
+```sh
+npm start
+```
+
+###Data Seed Script 
+
+The seeding script will populate the database with 100 records of mockdata. 
+
+To run the seeder script from the root directory:
+
+```sh
+npm run seeder
+```
+
+Each record will have a listing ID, a price and a details array. The details array contains detail objects for each date that has been booked and how many guests have booked for that date. Guests is also an object that consits of 3 key/value pairs; adults, children & infants. An visual example of a record is shown below: 
+
+```sh
+{
+  lising_id: 1,
+  price: $50,
+  details: [
+    {
+      date: 2019-07-05T07:00:00.000Z,
+      guests: {
+        adults: 2,
+        children: 2,
+        infants: 1
+      }
+    },
+        {
+      date: 2019-07-06T07:00:00.000Z,
+      guests: {
+        adults: 2,
+        children: 2,
+        infants: 1
+      }
+          {
+      date: 2019-07-06T07:00:00.000Z,
+      guests: {
+        adults: 2,
+        children: 2,
+        infants: 1
+      }
+    },
+  ]
+}
+```
+
+##Booking Component Business Logic
+
+###GET route
 This route will fetch and return booked dates based on a listing id query. It will also return an informative error message to the client if no records have been found.
+
+###POST route
+
+###Challenges/Learning experiences
+
+
+
+##Booking Component Client 
+
+####App.js
+This is the main component that holds most of the client side logic. I handles the get request upon mounting and receives all relevant listing data for its sub components.
+
+####DateSelector.js
+This is the date selector that allows the user to select a data range.
+
+####guests.js
+The guest components allows the user to select the amount of guests he/she would like to include in the booking.
+
+####Overview.js
+The guest components allows the user to select the amount of guests he/she would like to include in the booking.
+
+####Price.js
+The Price component receives the listing price via its props from the App component and reflects it to the user.
+
+####Stars.js
 
