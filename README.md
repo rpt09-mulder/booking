@@ -144,11 +144,15 @@ The GET route will attempt fetch and return booked dates and the listing price b
 The POST route is responsible for booking a received date range and is a bit more tricky as it is responsible to handle quite of bit of logic & data shaping. I've listed below the chronological flow of events once in attempt to explain what's going on:
 
 1. The route receives 
-   1. a listing ID as query paramter 
+   1. a listing ID as a query string
    1. the # of guests 
    1. a booking request start date and 
    1. a booking request end date.
-
+1. Although the client is set to have at least one adult with each party we want to verify this to prevent non-adult supervised parties to book to our system. Therefore the route will then verify that the received guest object contains an *adult* key with a value greater than one. If it doesnt, it will send back a message indicatin that at least one adult must be present. 
+1. We are then stripping the start and end date of the request body and setting them equal to *startDate* and *endDate*, respectively. We'll be working with those 2 variables quite a bit so we just want them to be easily manageable. 
+1. Now the fun begins, we first dive into the database, using the helper method *findOne* with the *listing_id* as a parameter we got from the query string to pull out the listing for which the user is tryin to request a booking for. 
+1. It is here where meet our first challenge, we have to first validate that the request does not contain any dates that have already been booked. We do this via the helper function *checkForConflictingDates* from our *controller* module. The *checkForConflictingDates* receives the found listing, the start date and the end date as a parameter. It then loops through each details object and applies the underscore *_.find* method to check for any matching dates. If it a matching date is found it will return true and kick us out of the loop. Back within our POST route, if checkForConflictingDate returns true, we respond to the client with a status code 400 and an informative error message that the selected date range is not available.
+1. If no conflicting dates have been found, we use our second helper method *bookDates* (also on the *controller* module) to book our dates. The *bookDates* method loops over each date and within the range to create an object with the  date key and 
 
 ### Challenges/Learning experiences
 
