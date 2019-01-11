@@ -144,10 +144,10 @@ The GET route will attempt fetch and return booked dates and the listing price b
 The POST route is responsible for booking a received date range and is a bit more tricky as it is responsible to handle quite of bit of logic & data shaping. I've listed below the chronological flow of events once in attempt to explain what's going on:
 
 1. The route receives 
-1. a listing ID as query paramter 
-1. the # of guests 
-1. a booking request start date and 
-1. a booking request end date.
+   1. a listing ID as query paramter 
+   1. the # of guests 
+   1. a booking request start date and 
+   1. a booking request end date.
 
 
 ### Challenges/Learning experiences
