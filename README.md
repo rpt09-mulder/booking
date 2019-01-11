@@ -117,8 +117,22 @@ Each mock listing will have a **listing ID**, a **price** and a **details array*
         children: 2,
         infants: 1
       }
+      
+      ...
+      
+      ...
+      
+      ...
+      
     },
-  ]
+         {
+   date: 2019-07-06T07:00:00.000Z,
+   guests: {
+     adults: 2,
+     children: 2,
+     infants: 1
+   }
+ ]
 }
 ```
 
