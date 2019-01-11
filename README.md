@@ -12,6 +12,8 @@ this component will allow the user to see available dates for a listing and make
 1. [Usage](#Usage)
 1. [Requirements](#Requirements)
 1. [Development](#Development)
+  1. [Backend](#Backend)
+  1. [Client](#Client)
 
 
 ## Related-Projects
