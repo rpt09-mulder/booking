@@ -34,20 +34,13 @@ The rooms, picture gallery and reviews components have been tackled by my teamma
   <img width="1440" alt="screen shot 2019-01-10 at 10 32 13 pm" src="https://user-images.githubusercontent.com/33808429/51017110-a2c15d80-1527-11e9-9520-e0a8f2eebc9c.png">
 
 
-
-
-
-
-
-
 ## Requirements
 
-An `nvmrc` file is included if using [nvm](https://github.com/creationix/nvm).
-
 - Node 6.13.0
-- etc
+- Npm 6.4.1
 
-## Development
+
+## Usage
 
 ### Installing Dependencies
 
@@ -58,28 +51,25 @@ npm install -g webpack
 npm install
 ```
 
-## Usage
-
-To launch the server in a development environment:
+> To launch the server in a development environment:
 
 ```sh
 npm run start-dev
 ```
 
-To launch the client in a development environment, run the following from the 'client' directory:
+> To launch the client in a development environment, run the following from the 'client' directory:
 
 ```sh
 npm run start-dev
 ```
 
-
-To launch the server in a production environment:
+> To launch the server in a production environment:
 
 ```sh
 npm start
 ```
 
-To launch the client in a production environment, run the following from the 'client' directory:
+> To launch the client in a production environment, run the following from the 'client' directory:
 
 ```sh
 npm start
