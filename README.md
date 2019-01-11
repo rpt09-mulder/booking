@@ -32,6 +32,9 @@ The rooms, picture gallery and reviews components have been tackled by my teamma
  
  
   <img width="1440" alt="screen shot 2019-01-10 at 10 32 13 pm" src="https://user-images.githubusercontent.com/33808429/51017110-a2c15d80-1527-11e9-9520-e0a8f2eebc9c.png">
+  
+  
+  ![project-airbnb](https://user-images.githubusercontent.com/33808429/51042522-6581bd80-1571-11e9-877d-5fbbbab14bda.jpg)
 
 
 ## Requirements
