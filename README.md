@@ -8,9 +8,9 @@ Booking Component component is found on the AirBnb listing page and allows the u
 
 ## Table of Contents
 1. [Related-Projects](#Related-Projects)
-1. [Usage](#Usage)
 1. [Requirements](#Requirements)
-1. [Backend](#Backend)
+1. [Usage](#Usage)
+1. [Back-end](#Backend)
    1. [Business-Logic](#Business-Logic)
    1. [Data](#Data)
    1. [Testing](#Testing)
@@ -51,29 +51,31 @@ npm install -g webpack
 npm install
 ```
 
-> To launch the server in a development environment:
+To launch the server in a development environment:
 
 ```sh
 npm run start-dev
 ```
 
-> To launch the client in a development environment, run the following from the 'client' directory:
+To launch the client in a development environment, run the following from the 'client' directory:
 
 ```sh
 npm run start-dev
 ```
 
-> To launch the server in a production environment:
+To launch the server in a production environment:
 
 ```sh
 npm start
 ```
 
-> To launch the client in a production environment, run the following from the 'client' directory:
+To launch the client in a production environment, run the following from the 'client' directory:
 
 ```sh
 npm start
 ```
+
+## Back-end
 
 ### Data Seed Script 
 
@@ -119,7 +121,10 @@ Each record will have a listing ID, a price and a details array. The details arr
 }
 ```
 
-## Booking Component Business Logic
+
+
+
+## Business-Logic
 
 ### GET route
 This route will fetch and return booked dates based on a listing id query. It will also return an informative error message to the client if no records have been found.
@@ -130,7 +135,7 @@ This route will fetch and return booked dates based on a listing id query. It wi
 
 
 
-## Booking Component Client 
+## Client
 
 #### App.js
 This is the main component that holds most of the client side logic. I handles the get request upon mounting and receives all relevant listing data for its sub components.
