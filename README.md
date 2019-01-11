@@ -6,6 +6,14 @@ this component will allow the user to see available dates for a listing and make
 
 <img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
 
+
+## Table of Contents
+
+1. [Usage](#Usage)
+1. [Requirements](#requirements)
+1. [Development](#development)
+
+
 ## Related Projects
 
 The rooms, picture gallery and reviews components have been tackled by my teammates, you'll be able to learn more about them by visiting their respective repos.
@@ -17,14 +25,11 @@ The rooms, picture gallery and reviews components have been tackled by my teamma
  Refference the screen shot below to view all components put together:
  
  
-  
+  <img width="1440" alt="screen shot 2019-01-10 at 10 32 13 pm" src="https://user-images.githubusercontent.com/33808429/51017110-a2c15d80-1527-11e9-9520-e0a8f2eebc9c.png">
 
 
-## Table of Contents
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
+
 
 
 
