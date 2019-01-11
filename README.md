@@ -1,7 +1,6 @@
-# Project Name
-Booking Component for the FireBnb Web Application
+# Booking Component of the AireBnb Web Application
 
-> Project description
+## Project description
 this component will allow the user to see available dates for a listing and make a booking request for a specific date range.
 
 <img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
