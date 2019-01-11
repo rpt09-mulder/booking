@@ -10,7 +10,7 @@ Booking Component component is found on the AirBnb listing page and allows the u
 1. [Related-Projects](#Related-Projects)
 1. [Requirements](#Requirements)
 1. [Usage](#Usage)
-1. [Back-end](#Back End)
+1. [Back End](#Back-End)
    1. [Business-Logic](#Business-Logic)
    1. [Data](#Data)
    1. [Testing](#Testing)
