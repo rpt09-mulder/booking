@@ -79,7 +79,7 @@ To launch the client in a production environment, run the following from the 'cl
 npm start
 ```
 
-###Data Seed Script 
+### Data Seed Script 
 
 The seeding script will populate the database with 100 records of mockdata. 
 
@@ -123,33 +123,33 @@ Each record will have a listing ID, a price and a details array. The details arr
 }
 ```
 
-##Booking Component Business Logic
+## Booking Component Business Logic
 
-###GET route
+### GET route
 This route will fetch and return booked dates based on a listing id query. It will also return an informative error message to the client if no records have been found.
 
-###POST route
+### POST route
 
-###Challenges/Learning experiences
+### Challenges/Learning experiences
 
 
 
-##Booking Component Client 
+## Booking Component Client 
 
-####App.js
+#### App.js
 This is the main component that holds most of the client side logic. I handles the get request upon mounting and receives all relevant listing data for its sub components.
 
-####DateSelector.js
+#### DateSelector.js
 This is the date selector that allows the user to select a data range.
 
-####guests.js
+#### guests.js
 The guest components allows the user to select the amount of guests he/she would like to include in the booking.
 
-####Overview.js
+#### Overview.js
 The guest components allows the user to select the amount of guests he/she would like to include in the booking.
 
-####Price.js
+#### Price.js
 The Price component receives the listing price via its props from the App component and reflects it to the user.
 
-####Stars.js
+#### Stars.js
 
