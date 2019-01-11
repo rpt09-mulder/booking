@@ -79,9 +79,9 @@ npm start
 
 ### Data
 
-### Seeding Script
+#### Seeding Script
 
-The seeding script will populate the database with 100 records of mockdata. 
+The seeding script will generate and populate the database with 100 records of mock listings. 
 
 To run the seeder script from the root directory:
 
@@ -89,7 +89,7 @@ To run the seeder script from the root directory:
 npm run seeder
 ```
 
-Each record will have a listing ID, a price and a details array. The details array contains detail objects for each date that has been booked and how many guests have booked for that date. Guests is also an object that consits of 3 key/value pairs; adults, children & infants. An visual example of a record is shown below: 
+Each mock listing will have a **listing ID**, a **price** and a **details array**. The details array will be filled by the seeder with 50 **details schemas**, one for a randomly booked date between *2018-01-01* and *2019-09-30*. The **details schema** includes the **date** and a **guest object**. The guests object consits of 3 keys; adults, children & infants each corresponding to a numerical value. An visual example of a record is shown below: 
 
 ```sh
 {
