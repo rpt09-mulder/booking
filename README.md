@@ -79,7 +79,7 @@ npm start
 
 ## Tech Stack
 I used the following technologies where used in the making of this project:
-### Back End
+#### Back End
 1. Express - Server
 1. Jest - Testing
 1. Moment - JS date manipulation
@@ -87,14 +87,14 @@ I used the following technologies where used in the making of this project:
 1. MongoDB/Mongoose - Database & ODM
 1. Lodash
 
-### Front End
+#### Front End
 1. React 
 1. Moment
 1. Axios
 1. Webpack
 1. Babel
 
-### Deployment 
+#### Deployment 
 1. Elasticbeanstalk (AWS)
 
 ## Back End
@@ -183,7 +183,19 @@ Some of the challenges that I encountered were as follows:
 1. **Deciding on a Data Schema**
    Initially I was considred to have a simply an object with a listing_ID and a date range. However it became evident very        quickly that in order to avoid double bookings I would have to create a schema that could handle an array into which to        then push the each booked date. This was working fine until I introduced the additional feature of selecting guest as part    of the booking. The challenge was that each date needed to be associated with a unique party who booked the stay. I            therefore decided on a nested schema where the date and and the guest is a child schema of the listing schema. Althoug        using nested object would have accomplished a similar goal, I found it valuable to have an id automatically added to the      each detail for uniquness sake. 
 1. **Working with Dates**
-   Turns out dates are a bit trickey to work with. The issue presented it self when I tried to validate each date to what had    already been booked. I started out with receiving a simple JavaScript date object with each booking attempt. The seeder        however uses a faker to 
+   Turns out dates are a bit trickey to work with. The issue presented it self when I tried to validate each date to what had    already been booked. I started out with receiving a simple JavaScript date object with each booking attempt. The seeder        however uses faker.js to randomly create mock dates. When I tried to compare what I was receiving from the client to the      mock date I noticed that event though the dates mached, the time stamps wouldn't allow for a clean match. I therefore used    moment.js, a popular data-manipulation library to set the hours and minutes to 0 on both the client and the server. What      also presented a challenge was having to loop throgh the incoming dates. The following while loop took a bit to figure out    but ulimately solved this issue as well.
+   
+```sh
+    let startDate = moment(req.body.startDate);
+    let endDate = moment(req.body.endDate);
+    
+    while(startDate <= endDate){
+    
+      ... Performing logic on each date ...
+    
+    startDate = startDate.clone().add(1, 'd');
+    } 
+```
    
 ### Testing
 
