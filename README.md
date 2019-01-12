@@ -157,6 +157,11 @@ The POST route is responsible for booking a received date range and is a bit mor
 1. Back in our POST route we now let the client know that the dates have a been successfully saved via a 201 status code and a success message.
 
 ### Challenges
+Some of the challenges I encountered were the following:
+1. **Deciding on a Data Schema*
+   Initially I was considred to have a simply an object with a listing_ID and a date range. However it became evident very        quickly that in order to avoid double bookings I would have to create a schema that could handle an array into which 
+
+### Testing
 
 
 
