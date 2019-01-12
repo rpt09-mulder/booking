@@ -199,7 +199,7 @@ Some of the challenges that I encountered were as follows:
 ```
    
 ### Testing
-During the creation of this project several test were written to ensure that the backend is running in good health and to identify potential error sources.
+During the creation of this project several test were written using Jest (in conjunction with Supertest), focusing primarily on the POST and GET routes to ensure that the stytem was running in good health, validate expecations on calling on these routes and to identify potential error sources.
 
 <img width="1012" alt="screen shot 2019-01-11 at 5 23 04 pm" src="https://user-images.githubusercontent.com/33808429/51067279-a1467280-15c5-11e9-947b-f32ea158bb10.png">
 
