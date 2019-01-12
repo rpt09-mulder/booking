@@ -2,7 +2,7 @@
 
 Booking Component component is found on the AirBnb listing page and allows the user to view available dates for a listed property, make a date range selection, and request a booking for the selected date range. It is part of a SOA (Service Oriented Architecture) Project with the intent to learn more about SOA, gain experience about the importance of SOA with a practical usecase, understand the interaction of micro-services and learn how to work in a team using a pre-determined workflow. 
 
-
+View live hosted on AWS: http://booking.jtaqrb8zaa.us-west-2.elasticbeanstalk.com
 <img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
 
 
@@ -29,7 +29,7 @@ The rooms, picture gallery and reviews components have been tackled by my teamma
   - https://github.com/rpt09-mulder/gallery
   - https://github.com/rpt09-mulder/reviews
   
- All components deployed and rendering:
+ All components deployed and rendering (view hosted on AWS: http://proxy-philipp.dxpxpip3pn.us-west-2.elasticbeanstalk.com/):
   
   ![project-airbnb](https://user-images.githubusercontent.com/33808429/51042522-6581bd80-1571-11e9-877d-5fbbbab14bda.jpg)
 
@@ -153,7 +153,8 @@ The POST route is responsible for booking a received date range and is a bit mor
 1. We are then stripping the start and end date of the request body and setting them equal to *startDate* and *endDate*, respectively. We'll be working with those 2 variables quite a bit so we just want them to be easily manageable. 
 1. Now the fun begins, we first dive into the database, using the helper method *findOne* with the *listing_id* as a parameter we got from the query string to pull out the listing for which the user is tryin to request a booking for. 
 1. It is here where meet our first challenge, we have to first validate that the request does not contain any dates that have already been booked. We do this via the helper function *checkForConflictingDates* from our *controller* module. The *checkForConflictingDates* receives the found listing, the start date and the end date as a parameter. It then loops through each details object and applies the underscore *_.find* method to check for any matching dates. If it a matching date is found it will return true and kick us out of the loop. Back within our POST route, if checkForConflictingDate returns true, we respond to the client with a status code 400 and an informative error message that the selected date range is not available.
-1. If no conflicting dates have been found, we use our second helper method *bookDates* (also on the *controller* module) to book our dates. The *bookDates* method loops over each date and within the range to create an object with the  date key and 
+1. If no conflicting dates have been found, we use our second helper method *bookDates* (also on the *controller* module) to book our dates. The *bookDates* method loops over each date and within the start and the end date to 1) create a detail object with a key for the date and second key a the guest object that contains a key for each guest type (adult, children, infants). Once all the detail objects have successfully been saved to the database, the *bookDates* resolves in a promise. 
+1. Back in our POST route we now let the client know that the dates have a been successfully saved via a 201 status code and a success message.
 
 ### Challenges
 
