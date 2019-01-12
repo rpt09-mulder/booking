@@ -206,6 +206,9 @@ During the creation of this project several test were written using Jest (in con
 
 ## Client
 
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/33808429/51067695-6d6d4c00-15c9-11e9-8a38-c3e0fba0ab69.gif)
+
+
 ### Component Architecture
 
 #### App.js
