@@ -159,7 +159,7 @@ The POST route is responsible for booking a received date range and is a bit mor
 ### Challenges
 Some of the challenges that I encountered were as follows:
 1. **Deciding on a Data Schema**
-   Initially I was considred to have a simply an object with a listing_ID and a date range. However it became evident very        quickly that in order to avoid double bookings I would have to create a schema that could handle an array into which to        then push the each booked date. This was working fine until I introduced the additional feature of selecting guest as part    of the booking. The challenge was that each date needed to know be associated with the unique party who booked the stay. 
+   Initially I was considred to have a simply an object with a listing_ID and a date range. However it became evident very        quickly that in order to avoid double bookings I would have to create a schema that could handle an array into which to        then push the each booked date. This was working fine until I introduced the additional feature of selecting guest as part    of the booking. The challenge was that each date needed to be associated with a unique party who booked the stay. I            therefore decided on a nested schema where the date and and the guest is a child schema of the listing schema. 
 
 ### Testing
 
