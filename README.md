@@ -189,11 +189,12 @@ Some of the challenges that I encountered were as follows:
     let startDate = moment(req.body.startDate);
     let endDate = moment(req.body.endDate);
     
-    while(startDate <= endDate){
+     while(startDate <= endDate){
     
       ... Performing logic on each date ...
     
-    startDate = startDate.clone().add(1, 'd');
+     startDate = startDate.clone().add(1, 'd');
+   
     } 
 ```
    
