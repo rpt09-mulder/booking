@@ -10,6 +10,7 @@ View live hosted on AWS: http://booking.jtaqrb8zaa.us-west-2.elasticbeanstalk.co
 1. [Related Projects](#Related-Projects)
 1. [Requirements](#Requirements)
 1. [Usage](#Usage)
+1. [Tech Stack](#Tech-Stack)
 1. [Back End](#Back-End)
    1. [Data](#Data)
    1. [Business Logic](#Business-Logic)
@@ -74,6 +75,27 @@ To launch the client in a production environment, run the following from the 'cl
 ```sh
 npm start
 ```
+
+
+## Tech Stack
+I used the following technologies where used in the making of this project:
+### Back End
+1. Express - Server
+1. Jest - Testing
+1. Moment - JS date manipulation
+1. Faker - Create mock data
+1. MongoDB/Mongoose - Database & ODM
+1. Lodash
+
+### Front End
+1. React 
+1. Moment
+1. Axios
+1. Webpack
+1. Babel
+
+### Deployment 
+1. Elasticbeanstalk (AWS)
 
 ## Back End
 
@@ -159,8 +181,10 @@ The POST route is responsible for booking a received date range and is a bit mor
 ### Challenges
 Some of the challenges that I encountered were as follows:
 1. **Deciding on a Data Schema**
-   Initially I was considred to have a simply an object with a listing_ID and a date range. However it became evident very        quickly that in order to avoid double bookings I would have to create a schema that could handle an array into which to        then push the each booked date. This was working fine until I introduced the additional feature of selecting guest as part    of the booking. The challenge was that each date needed to be associated with a unique party who booked the stay. I            therefore decided on a nested schema where the date and and the guest is a child schema of the listing schema. 
-
+   Initially I was considred to have a simply an object with a listing_ID and a date range. However it became evident very        quickly that in order to avoid double bookings I would have to create a schema that could handle an array into which to        then push the each booked date. This was working fine until I introduced the additional feature of selecting guest as part    of the booking. The challenge was that each date needed to be associated with a unique party who booked the stay. I            therefore decided on a nested schema where the date and and the guest is a child schema of the listing schema. Althoug        using nested object would have accomplished a similar goal, I found it valuable to have an id automatically added to the      each detail for uniquness sake. 
+1. **Working with Dates**
+   Turns out dates are a bit trickey to work with. The issue presented it self when I tried to validate each date to what had    already been booked. I started out with receiving a simple JavaScript date object with each booking attempt. The seeder        however uses a faker to 
+   
 ### Testing
 
 
