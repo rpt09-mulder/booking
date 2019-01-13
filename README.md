@@ -218,9 +218,9 @@ This is the main component that holds most of the client side logic. I handles t
 
 
 #### DateSelector.js
-This is the date selector that allows the user to select a data range.
+![ezgif com-video-to-gif 2](https://user-images.githubusercontent.com/33808429/51080238-b4704580-168c-11e9-9f4e-31103e7a194d.gif)
 
-
+This is component allows the user to select a data range. I a prefabricated date picker component called called *react-dates* (https://www.npmjs.com/package/react-datepicker) to implement this feature. The component is easily installed and even handles the visual indication of unavailable dates by having them greyed out. This was a major factor in going with react-dates, as I wanted already booked dates to be unavailable for the user to pick from. A shortcomings of this component however is that even though it does handles the exclusion visually, it does not support a way to exclude the actual date from the selection. I therefore had to figure out a way to validate the date selection on the server, which probably is a better way to handle this anyhow.
 
 
 
