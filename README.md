@@ -228,10 +228,12 @@ This is component allows the user to select a data range. I a prefabricated date
 ![ezgif com-video-to-gif 4](https://user-images.githubusercontent.com/33808429/51080473-467a4d00-1691-11e9-918b-bbaf0aefeafc.gif)
 
 This is a class based component that allows the user to indicate a number for each family member category (adult, children, infants) that he/she would like to bring along on the trip. By clicking on the indicator bar a drop down will appear from which the user will make his selection. As the user increases/descreases the category amount, the state of the component is being updated. Once the user has decided on his/her selection, he/she can click anywhere outside of the drop down for the drop down to disapear. This is made possible through via a really cool trick. We first attach native Javascript event listner to the document using the *componentDidMount* life cycle hook. We then set the *ref* of the component via a function to it's node. You can think of refs almost like an ID selector in CSS, they are a unique reference of the component you set it to and provide a way to access it. A node (DOM node) is essentially the HTML being rendered by your component. 
-I use  ```ref={this.setWrapperRef} ``` 
-as a property of the div wrapping the component that will pass the node as argument once it called which in this case is when the component (the guest card) renders. SetWrapperRef then set the node as a ref as such 
-```setWrapperRef = (node) => {
-  this.wrapperRef = node; }```
+I use  ```ref={this.setWrapperRef} ``` as a property of the div wrapping the component that will pass the node as argument once it called which in this case is when the component (the guest card) renders. SetWrapperRef then set the node as a ref as such 
+```
+setWrapperRef = (node) => { 
+this.wrapperRef = node; }
+```
+
 
 
 https://reactjs.org/docs/refs-and-the-dom.html
