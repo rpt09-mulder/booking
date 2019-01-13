@@ -21,7 +21,7 @@ View live hosted on AWS: http://booking.jtaqrb8zaa.us-west-2.elasticbeanstalk.co
 1. [Client](#Client)
    1. [Component Architecture](#Component-Architecture)
    1. [Styling](#Styling)
-   1. [Challenges & Learning Experiences](#Challenges-&-Learning-Experiences)
+   1. [Challenges and Learning Experiences](#Client-Challenges-and-Learning-Experiences)
  
 
 
@@ -250,7 +250,7 @@ The Price component receives the listing price via its props from the App compon
 #### Stars.js
 
 
-### Challenges & Learning Experiences
+### Client Challenges and Learning Experiences
 
 
 ### Styling
