@@ -20,7 +20,6 @@ View live hosted on AWS: http://booking.jtaqrb8zaa.us-west-2.elasticbeanstalk.co
    1. [Testing](#Testing)
 1. [Client](#Client)
    1. [Component Architecture](#Component-Architecture)
-   1. [Styling](#Styling)
    1. [Challenges and Learning Experiences](#Client-Challenges-and-Learning-Experiences)
  
 
@@ -94,6 +93,7 @@ I used the following technologies were used in the making of this project:
 1. React 
 1. Moment
 1. Axios
+1. Fontawesome
 1. Webpack
 1. Babel
 
@@ -241,19 +241,19 @@ The card is simply opened depending on the status of the state *card* key. The u
 
 
 #### Overview.js
+![ezgif com-video-to-gif 5](https://user-images.githubusercontent.com/33808429/51081020-dbce0f00-169a-11e9-8b9b-6e729c8a1a67.gif)
 
-The guest components allows the user to select the amount of guests he/she would like to include in the booking.
+The Overview component is class based and acts as the parent component/wrapper to Price and Stars components. It also in charge of fetching the reviews and start count from the Review service via the *componentDidMount* life cycle hook. Once it's received the information from the Review service it updates it's state and passes them as props to the Stars component.
+
+#### Stars.js
+The Stars component is functional and receives the average rating of the listing and the star count from it's parent component (Overview.js). The average ratings that are being passed to it will either be full or half numbers (i.e 7, 7.5, 8). Therefore in order to render the correct star count, it needs to check if a half number is being passed to it. A *for loop* is used to push a *font-awesome* icon into an array which then is being maped over on render. If the the component infact did receive a half rating an *if statement* will ensure to push a half-star into the array. 
 
 #### Price.js
 The Price component receives the listing price via its props from the App component and reflects it to the user.
 
-#### Stars.js
-
 
 ### Client Challenges and Learning Experiences
 
-
-### Styling
 
 
 
