@@ -225,6 +225,7 @@ This is component allows the user to select a data range. I a prefabricated date
 
 
 #### Guests.js
+![ezgif com-video-to-gif 4](https://user-images.githubusercontent.com/33808429/51080473-467a4d00-1691-11e9-918b-bbaf0aefeafc.gif)
 
 
 The guest components allows the user to select the amount of guests he/she would like to include in the booking.
