@@ -3,7 +3,8 @@
 Booking Component component is found on the AirBnb listing page and allows the user to view available dates for a listed property, make a date range selection, and request a booking for the selected date range. It is part of a SOA (Service Oriented Architecture) Project with the intent to learn more about SOA, gain experience about the importance of SOA with a practical use case, understand the interaction of micro-services and learn how to work in a team using a predetermined workflow. 
 
 View live hosted on AWS: http://booking.jtaqrb8zaa.us-west-2.elasticbeanstalk.com
-<img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
+
+
 
 
 ## Table of Contents
@@ -214,7 +215,7 @@ During the creation of this project several test were written using Jest (in con
 #### App.js
 This is the main component that holds most of the client side logic. I handles the get request upon mounting and receives all relevant listing data for its sub components.
 
-
+<img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
 
 
 #### DateSelector.js
