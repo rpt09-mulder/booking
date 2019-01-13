@@ -208,13 +208,13 @@ During the creation of this project several test were written using Jest (in con
 
 ## Client
 
+The client was built using React 
+<img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
 
 ### Component Architecture
 
 #### App.js
-This is the main component that holds most of the client side logic. I handles the get request upon mounting and receives all relevant listing data for its sub components.
-
-<img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
+This is the main component that contains most of the client side logic. It uses axios to handle both the POST request for the user to book a date range and the GET request to retrieve the already booked dates and pass them down to the date selector as props. It's responsiblity also includes any success/error message handling that is being communicated from the server.
 
 
 #### DateSelector.js
@@ -224,7 +224,9 @@ This is component allows the user to select a data range. I a prefabricated date
 
 
 
-#### guests.js
+#### Guests.js
+
+
 The guest components allows the user to select the amount of guests he/she would like to include in the booking.
 
 
