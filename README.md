@@ -254,8 +254,11 @@ The Price component receives the listing price via its props from the App compon
 
 ### Client Challenges and Learning Experiences
 
+#### Architecure and who handles what.
+A major hurdle was planning on executing a component architecture that would allow for most of the logic to remain central. At first I had virtually all the methods declared on the App.js file. This turned out to be a less-than-ideal decision as I had to pass down every method and prop to the subcomponents. I therefore rethought the strategy and allowed some of the child comopnents to be class based (namely Overview.js, Guests.js and DateSelector.js) where I found it to be most beneficical to manage logic locally.  
 
-
+#### How to count stars
+A hurdle presented itself once I received the rating information from the Review service. Rending half stars took a minute to figure out. There's probably a more mathy way to handle this but I found that using a simple for loop that pushes icons into an array to be the most straight forward approach.
 
 
 
