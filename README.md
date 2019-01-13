@@ -214,11 +214,22 @@ During the creation of this project several test were written using Jest (in con
 #### App.js
 This is the main component that holds most of the client side logic. I handles the get request upon mounting and receives all relevant listing data for its sub components.
 
+
+
+
 #### DateSelector.js
 This is the date selector that allows the user to select a data range.
 
+
+
+
+
 #### guests.js
 The guest components allows the user to select the amount of guests he/she would like to include in the booking.
+
+
+
+
 
 #### Overview.js
 The guest components allows the user to select the amount of guests he/she would like to include in the booking.
