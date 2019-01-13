@@ -209,7 +209,8 @@ During the creation of this project several test were written using Jest (in con
 
 ## Client
 
-The client was built using React 
+This is a React based client that uses axios to fetch data from its server and other services. 
+
 <img width="455" alt="screen shot 2019-01-10 at 10 23 01 pm" src="https://user-images.githubusercontent.com/33808429/51016756-50cc0800-1526-11e9-903c-f84861e87016.png">
 
 ### Component Architecture
