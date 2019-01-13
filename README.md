@@ -215,7 +215,7 @@ The client was built using React
 ### Component Architecture
 
 #### App.js
-This is the main component that contains most of the client side logic. It uses axios to handle both the POST request for the user to book a date range and the GET request to retrieve the already booked dates and pass them down to the date selector as props. It's responsiblity also includes any success/error message handling that is being communicated from the server.
+This is the main component that contains most of the client side logic. It uses axios to handle both the POST request for the user to book a date range and the GET request to retrieve the already booked dates and pass them down to the date selector as props. It's responsibility also includes any success/error message handling that is being communicated from the server.
 
 
 #### DateSelector.js
@@ -228,25 +228,25 @@ This is component allows the user to select a data range. I a prefabricated date
 #### Guests.js
 ![ezgif com-video-to-gif 4](https://user-images.githubusercontent.com/33808429/51080473-467a4d00-1691-11e9-918b-bbaf0aefeafc.gif)
 
-This is a class based component that allows the user to indicate a number for each family member category (adult, children, infants) that he/she would like to bring along on the trip. By clicking on the indicator bar a drop down will appear from which the user will make his selection. As the user increases/descreases the category amount, the state of the component is being updated. Once the user has decided on his/her selection, he/she can click anywhere outside of the drop down for the drop down to disapear. 
-This is made possible through via a really cool trick. We first attach *mouedown* native Javascript event listner to the document using the *componentDidMount* life cycle hook which triggers a function we name *handleClickOutside*. We then set the *ref* of our guest card via a function to it's node. You can think of refs almost like an ID selector in CSS, they are a unique reference of the component you set it to and provide a way to access it (https://reactjs.org/docs/refs-and-the-dom.html). A node (DOM node) is essentially the HTML being rendered by your component. 
+This is a class based component that allows the user to indicate a number for each family member category (adult, children, infants) that he/she would like to bring along on the trip. By clicking on the indicator bar a drop down will appear from which the user will make his selection. As the user increases/decreases the category amount, the state of the component is being updated. Once the user has decided on his/her selection, he/she can click anywhere outside of the drop down for the drop down to disappear. 
+This is made possible through via a really cool trick. We first attach *mousedown* native Javascript event listener to the document using the *componentDidMount* life cycle hook which triggers a function we name *handleClickOutside*. We then set the *ref* of our guest card via a function to it's node. You can think of refs almost like an ID selector in CSS, they are a unique reference of the component you set it to and provide a way to access it (https://reactjs.org/docs/refs-and-the-dom.html). A node (DOM node) is essentially the HTML being rendered by your component. 
 
 I use  ```ref={this.setWrapperRef} ``` as a property of the div wrapping the component that will pass the node as argument once it called which in this case is when the component (the guest card) renders. SetWrapperRef then set the node as a ref as such 
 ```
 setWrapperRef = (node) => { 
 this.wrapperRef = node; }
 ```
-The card is simply opened depending on the status of the state *card* key. The user opens it via an onclick event that sets the state *card* key to true. Afer the user clicks outside the opened card, the *mousedown* event listener will trigger *handleClickOutside* which will check if the wrapper ref has been set and if the click event happened on the wrapper. If it did, it will then set the state *card* key back to false and with it closing the card. 
+The card is simply opened depending on the status of the state *card* key. The user opens it via an onclick event that sets the state *card* key to true. After the user clicks outside the opened card, the *mousedown* event listener will trigger *handleClickOutside* which will check if the wrapper ref has been set and if the click event happened on the wrapper. If it did, it will then set the state *card* key back to false and with it closing the card. 
 
 
 
 #### Overview.js
 ![ezgif com-video-to-gif 5](https://user-images.githubusercontent.com/33808429/51081020-dbce0f00-169a-11e9-8b9b-6e729c8a1a67.gif)
 
-The Overview component is class based and acts as the parent component/wrapper to Price and Stars components. It also in charge of fetching the reviews and start count from the Review service via the *componentDidMount* life cycle hook. Once it's received the information from the Review service it updates it's state and passes them as props to the Stars component.
+The Overview component is class based and acts as the parent component/wrapper to Price and Stars components. It also in charge of fetching the reviews and start count from the Review service via the *componentDidMount* life cycle hook. Once it's received the information from the Review service it updates its state and passes them as props to the Stars component.
 
 #### Stars.js
-The Stars component is functional and receives the average rating of the listing and the star count from it's parent component (Overview.js). The average ratings that are being passed to it will either be full or half numbers (i.e 7, 7.5, 8). Therefore in order to render the correct star count, it needs to check if a half number is being passed to it. A *for loop* is used to push a *font-awesome* icon into an array which then is being maped over on render. If the the component infact did receive a half rating an *if statement* will ensure to push a half-star into the array. 
+The Stars component is functional and receives the average rating of the listing and the star count from it's parent component (Overview.js). The average ratings that are being passed to it will either be full or half numbers (i.e 7, 7.5, 8). Therefore in order to render the correct star count, it needs to check if a half number is being passed to it. A *for loop* is used to push a *font-awesome* icon into an array which then is being mapped over on render. If the the component in fact did receive a half rating an *if statement* will ensure to push a half-star into the array. 
 
 #### Price.js
 The Price component receives the listing price via its props from the App component and reflects it to the user.
@@ -254,11 +254,13 @@ The Price component receives the listing price via its props from the App compon
 
 ### Client Challenges and Learning Experiences
 
-#### Architecure and who handles what.
-A major hurdle was planning on executing a component architecture that would allow for most of the logic to remain central. At first I had virtually all the methods declared on the App.js file. This turned out to be a less-than-ideal decision as I had to pass down every method and prop to the subcomponents. I therefore rethought the strategy and allowed some of the child comopnents to be class based (namely Overview.js, Guests.js and DateSelector.js) where I found it to be most beneficical to manage logic locally.  
+#### Architecture and who handles what.
+A major hurdle was planning on executing a component architecture that would allow for most of the logic to remain central. At first I had virtually all the methods declared on the App.js file. This turned out to be a less-than-ideal decision as I had to pass down every method and prop to the subcomponents. I therefore rethought the strategy and allowed some of the child components to be class based (namely Overview.js, Guests.js and DateSelector.js) where I found it to be most beneficial to manage logic locally.  
 
 #### How to count stars
 A hurdle presented itself once I received the rating information from the Review service. Rending half stars took a minute to figure out. There's probably a more mathy way to handle this but I found that using a simple for loop that pushes icons into an array to be the most straight forward approach.
+
+
 
 
 
