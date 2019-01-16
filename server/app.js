@@ -6,15 +6,13 @@ const db = require('./database/db');
 const cors = require('cors');
 const moment = require('moment');
 const morgan = require('morgan');
-const _ = require('lodash')
+const controller = require('./controller')
+
 
 
 const app = express();
 app.use(morgan('tiny'))
 app.use(cors());
-
-// Handling errors to be communicated to client
-const errors = {}
 
 // CORS Middleware
 app.use(cors())
@@ -43,10 +41,10 @@ app.get('/booking/:id', (req, res) => {
     .then(listing => {
 
       if(listing === null){
-        res.status(404).json({listingnotfound: 'No listing found'})
+        res.status(404).json({invalid: 'No listing found'})
       }
 
-      let currentListing = {};
+      let  currentListing = {};
 
       // Send back price of listing
       currentListing.price = listing.listing_price
@@ -69,26 +67,26 @@ app.get('/booking/:id', (req, res) => {
 app.post('/booking/:id', (req, res) => {
 
     let guests = req.body.guests
-
-    let startDate = moment(req.body.startDate);
-    let endDate = moment(req.body.endDate);
     
     if(guests.adults < 1){
       res.status(400).send({invalid: 'At least one adult must be in your party'});
       return;
     }
 
+    let startDate = moment(req.body.startDate);
+    let endDate = moment(req.body.endDate);
+
     Listing.findOne({listing_id: req.params.id})
       .then((listing) => {
 
          // Check if for any conflicting dates and return 400 if a rogue date is identified
-         if(checkForConflictingDates(listing, startDate, endDate)){
+         if(controller.checkForConflictingDates(listing, startDate, endDate)){
            res.status(400).send({invalid: 'Unfortunately this date range is unavailable'})
            return;
          } else {
 
           // Book dates if no rogue date has been identified
-          bookDates(listing, startDate, endDate, guests)
+          controller.bookDates(listing, startDate, endDate, guests)
             .then(() => {
               listing.save().then(() =>{
                 res.status(201).send({validDates: 'Congrats, your dates have been booked!'})
@@ -99,40 +97,6 @@ app.post('/booking/:id', (req, res) => {
   });
 
 
-
-  const checkForConflictingDates = (listing, startDate, endDate) => {
-
-    let day = startDate;
-
-    while(day <= endDate){
-      if(_.find(listing.details, {'date': day.toDate()})){
-        return true;
-      } 
-     day = day.clone().add(1, 'd');
-    }
-  }
-
-
-  const bookDates = (listing, startDate, endDate, guests) => {
-    return new Promise(function(resolve, reject){
-      
-      let day = startDate;
-
-      while(day <= endDate){
-      
-      listing.details.push({
-        date: day.toDate(),
-        guests: guests
-      })
-      
-      day = day.clone().add(1, 'd');
-      } 
-      resolve()
-
-      reject(Error('Something broke'))
-      
-    })
-  }
 
 
 module.exports = app

@@ -3,7 +3,6 @@ import DateSelector from './components/DateSelector';
 import Guests from './components/Guests';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import axios from 'axios';
-import faker from 'faker';
 import moment from 'moment';
 import Overview from './components/Overview'
 import { StickyContainer, Sticky } from 'react-sticky';
