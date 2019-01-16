@@ -7,15 +7,12 @@ const cors = require('cors');
 const moment = require('moment');
 const morgan = require('morgan');
 const controller = require('./controller')
-const _ = require('lodash')
+
 
 
 const app = express();
 app.use(morgan('tiny'))
 app.use(cors());
-
-// Handling errors to be communicated to client
-const errors = {}
 
 // CORS Middleware
 app.use(cors())
@@ -70,14 +67,14 @@ app.get('/booking/:id', (req, res) => {
 app.post('/booking/:id', (req, res) => {
 
     let guests = req.body.guests
-
-    let startDate = moment(req.body.startDate);
-    let endDate = moment(req.body.endDate);
     
     if(guests.adults < 1){
       res.status(400).send({invalid: 'At least one adult must be in your party'});
       return;
     }
+
+    let startDate = moment(req.body.startDate);
+    let endDate = moment(req.body.endDate);
 
     Listing.findOne({listing_id: req.params.id})
       .then((listing) => {

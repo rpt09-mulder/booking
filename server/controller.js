@@ -2,30 +2,26 @@ const _ = require('lodash')
 
 exports.checkForConflictingDates = (listing, startDate, endDate) => {
 
-  let day = startDate;
-
-  while(day <= endDate){
-    if(_.find(listing.details, {'date': day.toDate()})){
+  while(startDate <= endDate){
+    if(_.find(listing.details, {'date': startDate.toDate()})){
       return true;
     } 
-   day = day.clone().add(1, 'd');
+    startDate = startDate.clone().add(1, 'd');
   }
 }
 
 
 exports.bookDates = (listing, startDate, endDate, guests) => {
   return new Promise(function(resolve, reject){
-    
-    let day = startDate;
-
-    while(day <= endDate){
+  
+    while(startDate <= endDate){
     
     listing.details.push({
-      date: day.toDate(),
+      date: startDate.toDate(),
       guests: guests
     })
     
-    day = day.clone().add(1, 'd');
+    startDate = startDate.clone().add(1, 'd');
     } 
     resolve()
 

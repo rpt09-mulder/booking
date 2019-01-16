@@ -11,7 +11,7 @@
     "start-dev": "NODE_ENV=development nodemon server/server.js",
     "start": "NODE_ENV=production node server/server.js ",
     "seeder": "node server/seeder.js",
-    "test": "jest --detectOpenHandles"
+    "test": "NODE_ENV=development jest --detectOpenHandles"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
